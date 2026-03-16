@@ -13,6 +13,7 @@ A collection of projects exploring large language models — from transformer in
 | [Transformer Decoder — RTL Accelerator](https://github.com/BrendanJamesLynskey/LLM_Transformer_Decoder_RTL) | Synthesisable SystemVerilog implementation of a pre-norm decoder block with KV-cache, plus full verification suite (83 tests) |
 | [Transformer Decoder from Scratch](https://github.com/BrendanJamesLynskey/Python_Transformer_Decoder) | Step-by-step PyTorch implementation in a single Jupyter notebook — every component built from first principles and visualised |
 | [Neural Network Data Types](https://github.com/BrendanJamesLynskey/NN_data_types) | SystemVerilog implementations of 9 numerical formats (FP32 down to FP4) used in NN training and inference hardware |
+| [Hardware-Aware Quantisation](https://github.com/BrendanJamesLynskey/Hardware_Aware_Quantisation) | Interactive quantisation explorer — number format visualisation, weight distributions, quantisation schemes, simulated inference, hardware cost models, mixed-precision |
 
 ## Agents & Orchestration
 
