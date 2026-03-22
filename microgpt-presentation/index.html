@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building GPT From Scratch — Karpathy's nanoGPT Explained</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== TITLE ==================== -->
+<section>
+    <h1 class="gradient-text">Building GPT<br>From Scratch</h1>
+    <p class="subtitle">A step-by-step walkthrough of Andrej Karpathy's<br><em>nanoGPT</em> lecture code</p>
+    <div class="meta-info">
+        <span>~200 lines of Python</span> · <span>~10.4M parameters</span> · <span>Character-level language model</span>
+    </div>
+    <p class="nav-hint">Use <kbd>→</kbd> to advance · <kbd>↓</kbd> for sub-sections · <kbd>Esc</kbd> for overview</p>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section>
+    <h2>Roadmap</h2>
+    <div class="roadmap" id="roadmap">
+        <div class="roadmap-item active" data-step="1">
+            <div class="roadmap-icon">📖</div>
+            <div class="roadmap-label">Data &amp; Tokenization</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-item" data-step="2">
+            <div class="roadmap-icon">📦</div>
+            <div class="roadmap-label">Batching</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-item" data-step="3">
+            <div class="roadmap-icon">👁️</div>
+            <div class="roadmap-label">Self-Attention</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-item" data-step="4">
+            <div class="roadmap-icon">🧠</div>
+            <div class="roadmap-label">Transformer Block</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-item" data-step="5">
+            <div class="roadmap-icon">🏗️</div>
+            <div class="roadmap-label">Full GPT Model</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-item" data-step="6">
+            <div class="roadmap-icon">🚀</div>
+            <div class="roadmap-label">Training &amp; Generation</div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PART 1: DATA & TOKENIZATION ==================== -->
+<section>
+<section>
+    <h2 class="section-title">Part 1</h2>
+    <h1 class="gradient-text">Data &amp; Tokenization</h1>
+    <p>From raw Shakespeare text to integer sequences</p>
+</section>
+
+<section>
+    <h3>The Dataset: Tiny Shakespeare</h3>
+    <div class="two-col">
+        <div class="col">
+            <pre><code class="language-python"># Read the raw text file (~1.1MB)
+with open('input.txt', 'r',
+          encoding='utf-8') as f:
+    text = f.read()</code></pre>
+            <div class="explain-box">
+                <p><strong>What:</strong> Loads the entire Tiny Shakespeare corpus — all of Shakespeare's works concatenated into a single ~1MB text file.</p>
+                <p><strong>Why:</strong> Character-level models need raw text. No preprocessing, no special tokenizers — just raw characters.</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="text-sample" id="shakespeare-sample">
+                <div class="text-sample-header">input.txt (first 200 chars)</div>
+                <div class="text-sample-body">First Citizen:\nBefore we proceed any further, hear me speak.\n\nAll:\nSpeak, speak.\n\nFirst Citizen:\nYou are all resolved rather to die than to famish?\n\nAll:\nResolved. resolved.\n\nFirst Citizen:\nFirst, you know...</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat"><span class="stat-num">1,115,394</span><span class="stat-label">characters</span></div>
+                <div class="stat"><span class="stat-num">65</span><span class="stat-label">unique chars</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3>Building a Character Vocabulary</h3>
+    <pre><code class="language-python"># Find all unique characters in the text
+chars = sorted(list(set(text)))
+vocab_size = len(chars)   # 65
+
+# Create bidirectional mappings
+stoi = { ch:i for i,ch in enumerate(chars) }  # string → integer
+itos = { i:ch for i,ch in enumerate(chars) }   # integer → string
+
+# Lambda functions for encoding/decoding
+encode = lambda s: [stoi[c] for c in s]
+decode = lambda l: ''.join([itos[i] for i in l])</code></pre>
+    <div class="explain-box">
+        <p><strong>Character-level tokenizer:</strong> Unlike GPT-3/4 which use BPE (byte-pair encoding) with ~50K tokens, this model treats each character as a token. The vocabulary is just 65 characters: lowercase/uppercase letters, digits, punctuation, whitespace.</p>
+    </div>
+    <div class="interactive-demo" id="tokenizer-demo">
+        <label>Try it — type text to see the encoding:</label>
+        <input type="text" id="tokenizer-input" value="hello" maxlength="30" spellcheck="false">
+        <div class="token-display" id="tokenizer-output"></div>
+    </div>
+</section>
+
+<section>
+    <h3>Train / Validation Split</h3>
+    <pre><code class="language-python"># Encode the entire text to a tensor of integers
+data = torch.tensor(encode(text), dtype=torch.long)
+
+# First 90% → training, last 10% → validation
+n = int(0.9 * len(data))
+train_data = data[:n]     # 1,003,854 chars
+val_data   = data[n:]     #   111,540 chars</code></pre>
+    <div class="split-visual">
+        <div class="split-bar">
+            <div class="split-train" style="width:90%">
+                <span>Training (90%)</span>
+            </div>
+            <div class="split-val" style="width:10%">
+                <span>Val</span>
+            </div>
+        </div>
+        <p class="split-note">Simple sequential split — no shuffling needed for language modeling since each chunk is already diverse.</p>
+    </div>
+</section>
+</section>
+
+<!-- ==================== PART 2: BATCHING ==================== -->
+<section>
+<section>
+    <h2 class="section-title">Part 2</h2>
+    <h1 class="gradient-text">Data Batching</h1>
+    <p>How we feed data to the model in parallel chunks</p>
+</section>
+
+<section>
+    <h3>Hyperparameters</h3>
+    <pre><code class="language-python">batch_size = 64    # parallel sequences per step
+block_size = 256   # maximum context length
+max_iters  = 5000  # total training steps
+learning_rate = 3e-4  # AdamW learning rate
+n_embd   = 384     # embedding dimension
+n_head   = 6       # number of attention heads
+n_layer  = 6       # number of transformer blocks
+dropout  = 0.2     # dropout probability</code></pre>
+    <div class="param-grid">
+        <div class="param-card" title="Click to learn more" onclick="this.classList.toggle('flipped')">
+            <div class="param-front"><strong>batch_size = 64</strong><br>sequences/step</div>
+            <div class="param-back">Process 64 independent text chunks in parallel on the GPU for efficiency</div>
+        </div>
+        <div class="param-card" title="Click to learn more" onclick="this.classList.toggle('flipped')">
+            <div class="param-front"><strong>block_size = 256</strong><br>max context</div>
+            <div class="param-back">The model can look back at most 256 characters to predict the next one</div>
+        </div>
+        <div class="param-card" title="Click to learn more" onclick="this.classList.toggle('flipped')">
+            <div class="param-front"><strong>n_embd = 384</strong><br>dimensions</div>
+            <div class="param-back">Each token is represented as a 384-dimensional vector throughout the network</div>
+        </div>
+        <div class="param-card" title="Click to learn more" onclick="this.classList.toggle('flipped')">
+            <div class="param-front"><strong>6 heads × 6 layers</strong><br>architecture</div>
+            <div class="param-back">6 attention heads (64 dims each) in each of 6 stacked transformer blocks</div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3>get_batch() — Sampling Random Chunks</h3>
+    <pre><code class="language-python">def get_batch(split):
+    data = train_data if split == 'train' else val_data
+    # Pick random starting positions
+    ix = torch.randint(len(data) - block_size, (batch_size,))
+    # Stack input sequences (x) and target sequences (y)
+    x = torch.stack([data[i:i+block_size] for i in ix])
+    y = torch.stack([data[i+1:i+block_size+1] for i in ix])
+    x, y = x.to(device), y.to(device)
+    return x, y</code></pre>
+    <div class="batch-visual" id="batch-animation">
+        <div class="batch-explanation">
+            <p><strong>Key insight:</strong> The target <code>y</code> is just <code>x</code> shifted right by 1. For every position, we're asking: "given all characters so far, predict the next one."</p>
+        </div>
+        <div class="batch-example">
+            <div class="batch-row">
+                <span class="batch-label">x =</span>
+                <span class="batch-cell">h</span>
+                <span class="batch-cell">e</span>
+                <span class="batch-cell">l</span>
+                <span class="batch-cell">l</span>
+                <span class="batch-cell">o</span>
+                <span class="batch-cell">&nbsp;</span>
+                <span class="batch-cell">w</span>
+                <span class="batch-cell">o</span>
+            </div>
+            <div class="batch-row">
+                <span class="batch-label">y =</span>
+                <span class="batch-cell highlight">e</span>
+                <span class="batch-cell highlight">l</span>
+                <span class="batch-cell highlight">l</span>
+                <span class="batch-cell highlight">o</span>
+                <span class="batch-cell highlight">&nbsp;</span>
+                <span class="batch-cell highlight">w</span>
+                <span class="batch-cell highlight">o</span>
+                <span class="batch-cell highlight">r</span>
+            </div>
+        </div>
+        <button class="demo-btn" onclick="animateBatch()">Animate batch sampling ▶</button>
+    </div>
+</section>
+
+<section>
+    <h3>estimate_loss() — Evaluation</h3>
+    <pre><code class="language-python">@torch.no_grad()           # disable gradient tracking
+def estimate_loss():
+    out = {}
+    model.eval()            # switch to eval mode
+    for split in ['train', 'val']:
+        losses = torch.zeros(eval_iters)   # eval_iters = 200
+        for k in range(eval_iters):
+            X, Y = get_batch(split)
+            logits, loss = model(X, Y)
+            losses[k] = loss.item()
+        out[split] = losses.mean()         # average over 200 batches
+    model.train()           # back to train mode
+    return out</code></pre>
+    <div class="explain-box">
+        <p><strong>Why average 200 batches?</strong> A single batch's loss is noisy. Averaging over 200 random batches gives a much more stable estimate. <code>@torch.no_grad()</code> saves memory by not storing intermediate values needed for backpropagation.</p>
+    </div>
+</section>
+</section>
+
+<!-- ==================== PART 3: SELF-ATTENTION ==================== -->
+<section>
+<section>
+    <h2 class="section-title">Part 3</h2>
+    <h1 class="gradient-text">Self-Attention</h1>
+    <p>The core mechanism that lets tokens communicate</p>
+</section>
+
+<section>
+    <h3>The Attention Intuition</h3>
+    <div class="attention-intuition">
+        <svg id="attention-svg" viewBox="0 0 700 300" class="diagram">
+            <defs>
+                <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#4fc3f7"/>
+                </marker>
+            </defs>
+            <!-- Token boxes -->
+            <rect x="50" y="200" width="80" height="40" rx="8" class="token-box"/>
+            <text x="90" y="225" class="token-text">The</text>
+            <rect x="180" y="200" width="80" height="40" rx="8" class="token-box"/>
+            <text x="220" y="225" class="token-text">cat</text>
+            <rect x="310" y="200" width="80" height="40" rx="8" class="token-box"/>
+            <text x="350" y="225" class="token-text">sat</text>
+            <rect x="440" y="200" width="80" height="40" rx="8" class="token-box"/>
+            <text x="480" y="225" class="token-text">on</text>
+            <rect x="570" y="200" width="80" height="40" rx="8" class="token-box current-token"/>
+            <text x="610" y="225" class="token-text">the</text>
+            <!-- Attention arrows with varying thickness -->
+            <line x1="90" y1="200" x2="610" y2="200" class="attn-line" stroke-width="1" opacity="0.3" marker-end="url(#arrow)"/>
+            <line x1="220" y1="200" x2="610" y2="200" class="attn-line" stroke-width="3" opacity="0.7" marker-end="url(#arrow)"/>
+            <line x1="350" y1="200" x2="610" y2="200" class="attn-line" stroke-width="4" opacity="0.9" marker-end="url(#arrow)"/>
+            <line x1="480" y1="200" x2="610" y2="200" class="attn-line" stroke-width="2" opacity="0.5" marker-end="url(#arrow)"/>
+            <!-- Labels -->
+            <text x="350" y="50" class="diagram-title">Each token attends to all previous tokens</text>
+            <text x="350" y="80" class="diagram-subtitle">Line thickness = attention weight (how relevant that token is)</text>
+            <!-- Attention weights -->
+            <text x="90" y="185" class="weight-text">0.05</text>
+            <text x="220" y="170" class="weight-text">0.35</text>
+            <text x="350" y="165" class="weight-text">0.40</text>
+            <text x="480" y="175" class="weight-text">0.20</text>
+        </svg>
+    </div>
+    <div class="explain-box small">
+        <p><strong>Self-attention</strong> = each token creates a <span class="hl-q">Query</span> ("what am I looking for?"), a <span class="hl-k">Key</span> ("what do I contain?"), and a <span class="hl-v">Value</span> ("what info do I provide?"). Attention score = how well a query matches each key.</p>
+    </div>
+</section>
+
+<section>
+    <h3>Head — Single Attention Head</h3>
+    <pre><code class="language-python">class Head(nn.Module):
+    """ one head of self-attention """
+
+    def __init__(self, head_size):
+        super().__init__()
+        self.key   = nn.Linear(n_embd, head_size, bias=False)
+        self.query = nn.Linear(n_embd, head_size, bias=False)
+        self.value = nn.Linear(n_embd, head_size, bias=False)
+        self.register_buffer('tril',
+            torch.tril(torch.ones(block_size, block_size)))
+        self.dropout = nn.Dropout(dropout)</code></pre>
+    <div class="explain-box">
+        <p><strong>Three linear projections</strong> — each maps from <code>n_embd=384</code> down to <code>head_size=64</code> (since 384/6 heads = 64).</p>
+        <p><strong><code>register_buffer('tril', ...)</code></strong> — creates a lower-triangular mask matrix. This ensures the model is <em>causal</em>: token at position <em>t</em> can only see positions ≤ <em>t</em>, never the future.</p>
+    </div>
+</section>
+
+<section>
+    <h3>Head — Forward Pass</h3>
+    <pre><code class="language-python">def forward(self, x):
+    B, T, C = x.shape           # batch, time, channels
+    k = self.key(x)              # (B, T, head_size)
+    q = self.query(x)            # (B, T, head_size)
+
+    # Compute attention scores
+    wei = q @ k.transpose(-2,-1)     # (B,T,hs) @ (B,hs,T) → (B,T,T)
+    wei = wei * k.shape[-1]**-0.5    # scale by 1/√(head_size)
+    wei = wei.masked_fill(
+        self.tril[:T, :T] == 0, float('-inf'))  # causal mask
+    wei = F.softmax(wei, dim=-1)     # normalize to probabilities
+    wei = self.dropout(wei)
+
+    # Weighted aggregation of values
+    v = self.value(x)                # (B, T, head_size)
+    out = wei @ v                    # (B,T,T) @ (B,T,hs) → (B,T,hs)
+    return out</code></pre>
+</section>
+
+<section>
+    <h3>Attention — Visual Walkthrough</h3>
+    <div class="attention-walkthrough">
+        <div class="step-controls">
+            <button class="step-btn active" onclick="showAttentionStep(0)">1. Q×K<sup>T</sup></button>
+            <button class="step-btn" onclick="showAttentionStep(1)">2. Scale</button>
+            <button class="step-btn" onclick="showAttentionStep(2)">3. Mask</button>
+            <button class="step-btn" onclick="showAttentionStep(3)">4. Softmax</button>
+            <button class="step-btn" onclick="showAttentionStep(4)">5. × V</button>
+        </div>
+        <div class="step-panels">
+            <div class="step-panel visible" data-step="0">
+                <div class="matrix-visual">
+                    <div class="matrix">
+                        <div class="matrix-title">Q × K<sup>T</sup> → Raw Scores</div>
+                        <table class="matrix-table">
+                            <tr><td>2.1</td><td>0.8</td><td>1.5</td><td>0.3</td></tr>
+                            <tr><td>0.4</td><td>1.9</td><td>0.7</td><td>1.2</td></tr>
+                            <tr><td>1.1</td><td>0.6</td><td>2.3</td><td>0.9</td></tr>
+                            <tr><td>0.5</td><td>1.4</td><td>0.8</td><td>2.0</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <p class="step-desc">The dot product Q×K<sup>T</sup> measures how much each query "matches" each key. Higher score = more attention.</p>
+            </div>
+            <div class="step-panel" data-step="1">
+                <div class="matrix-visual">
+                    <div class="matrix">
+                        <div class="matrix-title">÷ √head_size (=√64 = 8)</div>
+                        <table class="matrix-table">
+                            <tr><td>0.26</td><td>0.10</td><td>0.19</td><td>0.04</td></tr>
+                            <tr><td>0.05</td><td>0.24</td><td>0.09</td><td>0.15</td></tr>
+                            <tr><td>0.14</td><td>0.08</td><td>0.29</td><td>0.11</td></tr>
+                            <tr><td>0.06</td><td>0.18</td><td>0.10</td><td>0.25</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <p class="step-desc"><strong>Scaling</strong> prevents dot products from growing too large, which would push softmax into regions with tiny gradients. Critical for stable training.</p>
+            </div>
+            <div class="step-panel" data-step="2">
+                <div class="matrix-visual">
+                    <div class="matrix">
+                        <div class="matrix-title">Causal Mask (future = -∞)</div>
+                        <table class="matrix-table">
+                            <tr><td>0.26</td><td class="masked">-∞</td><td class="masked">-∞</td><td class="masked">-∞</td></tr>
+                            <tr><td>0.05</td><td>0.24</td><td class="masked">-∞</td><td class="masked">-∞</td></tr>
+                            <tr><td>0.14</td><td>0.08</td><td>0.29</td><td class="masked">-∞</td></tr>
+                            <tr><td>0.06</td><td>0.18</td><td>0.10</td><td>0.25</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <p class="step-desc">The <strong>lower-triangular mask</strong> sets future positions to -∞. After softmax, these become 0 — the model cannot cheat by looking ahead.</p>
+            </div>
+            <div class="step-panel" data-step="3">
+                <div class="matrix-visual">
+                    <div class="matrix">
+                        <div class="matrix-title">Softmax → Attention Weights</div>
+                        <table class="matrix-table softmax">
+                            <tr><td class="hot">1.00</td><td class="cold">0.00</td><td class="cold">0.00</td><td class="cold">0.00</td></tr>
+                            <tr><td class="warm">0.45</td><td class="hot">0.55</td><td class="cold">0.00</td><td class="cold">0.00</td></tr>
+                            <tr><td class="warm">0.30</td><td class="mild">0.28</td><td class="hot">0.42</td><td class="cold">0.00</td></tr>
+                            <tr><td class="mild">0.19</td><td class="warm">0.28</td><td class="mild">0.23</td><td class="warm">0.30</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <p class="step-desc">Each row now sums to 1.0 — a probability distribution over which past tokens to attend to. The first token has no choice (100% self-attention).</p>
+            </div>
+            <div class="step-panel" data-step="4">
+                <div class="matrix-visual">
+                    <div class="matrix">
+                        <div class="matrix-title">Weights × V → Output</div>
+                        <div class="matmul-diagram">
+                            <div class="mm-box">Attention<br>Weights<br><small>(T×T)</small></div>
+                            <div class="mm-op">×</div>
+                            <div class="mm-box">Values<br><small>(T×head_size)</small></div>
+                            <div class="mm-op">=</div>
+                            <div class="mm-box result">Output<br><small>(T×head_size)</small></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="step-desc">Each token's output is a <strong>weighted average</strong> of the value vectors of all tokens it attends to. Tokens that are more "relevant" contribute more to the output.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3>Interactive: Causal Mask Explorer</h3>
+    <div class="mask-demo">
+        <p>Click cells to see what each token can attend to:</p>
+        <div class="mask-grid" id="mask-grid"></div>
+        <div class="mask-explanation" id="mask-explain">
+            <p>Click a row to highlight what that token position can see.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3>MultiHeadAttention — Parallel Heads</h3>
+    <pre><code class="language-python">class MultiHeadAttention(nn.Module):
+    """ multiple heads of self-attention in parallel """
+
+    def __init__(self, num_heads, head_size):
+        super().__init__()
+        self.heads = nn.ModuleList(
+            [Head(head_size) for _ in range(num_heads)])
+        self.proj = nn.Linear(
+            head_size * num_heads, n_embd)  # projection back
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        # Run all heads in parallel, concatenate outputs
+        out = torch.cat([h(x) for h in self.heads], dim=-1)
+        # Project back to n_embd dimensions
+        out = self.dropout(self.proj(out))
+        return out</code></pre>
+    <div class="multihead-visual">
+        <svg viewBox="0 0 700 200" class="diagram">
+            <text x="350" y="20" class="diagram-title">6 heads × 64 dims = 384 → project back to 384</text>
+            <!-- Input -->
+            <rect x="10" y="80" width="80" height="50" rx="6" class="input-box"/>
+            <text x="50" y="110" class="box-text">Input<tspan x="50" dy="14" font-size="10">(B,T,384)</tspan></text>
+            <!-- Heads -->
+            <rect x="140" y="40" width="60" height="35" rx="5" class="head-box h1"/><text x="170" y="62" class="head-text">Head 1<tspan x="170" dy="11" font-size="8">64d</tspan></text>
+            <rect x="140" y="82" width="60" height="35" rx="5" class="head-box h2"/><text x="170" y="104" class="head-text">Head 2<tspan x="170" dy="11" font-size="8">64d</tspan></text>
+            <rect x="140" y="124" width="60" height="35" rx="5" class="head-box h3"/><text x="170" y="146" class="head-text">...<tspan x="170" dy="11" font-size="8">Head 6</tspan></text>
+            <!-- Arrows in -->
+            <line x1="90" y1="105" x2="140" y2="57" class="flow-line"/>
+            <line x1="90" y1="105" x2="140" y2="100" class="flow-line"/>
+            <line x1="90" y1="105" x2="140" y2="141" class="flow-line"/>
+            <!-- Concat -->
+            <rect x="260" y="70" width="80" height="60" rx="6" class="concat-box"/>
+            <text x="300" y="97" class="box-text">Concat<tspan x="300" dy="14" font-size="10">dim=-1</tspan></text>
+            <!-- Arrows to concat -->
+            <line x1="200" y1="57" x2="260" y2="90" class="flow-line"/>
+            <line x1="200" y1="100" x2="260" y2="100" class="flow-line"/>
+            <line x1="200" y1="141" x2="260" y2="110" class="flow-line"/>
+            <!-- Projection -->
+            <rect x="400" y="75" width="80" height="50" rx="6" class="proj-box"/>
+            <text x="440" y="100" class="box-text">Linear<tspan x="440" dy="14" font-size="10">384→384</tspan></text>
+            <line x1="340" y1="100" x2="400" y2="100" class="flow-line"/>
+            <!-- Output -->
+            <rect x="540" y="75" width="80" height="50" rx="6" class="output-box"/>
+            <text x="580" y="100" class="box-text">Output<tspan x="580" dy="14" font-size="10">(B,T,384)</tspan></text>
+            <line x1="480" y1="100" x2="540" y2="100" class="flow-line"/>
+        </svg>
+    </div>
+    <div class="explain-box small">
+        <p><strong>Why multiple heads?</strong> Each head can learn different "relationships" — one might track syntactic dependencies, another semantic similarity, another positional patterns. Concatenating them gives a richer representation.</p>
+    </div>
+</section>
+</section>
+
+<!-- ==================== PART 4: TRANSFORMER BLOCK ==================== -->
+<section>
+<section>
+    <h2 class="section-title">Part 4</h2>
+    <h1 class="gradient-text">The Transformer Block</h1>
+    <p>Attention + Feed-Forward with residual connections</p>
+</section>
+
+<section>
+    <h3>FeedForward — The "Thinking" Layer</h3>
+    <pre><code class="language-python">class FeedFoward(nn.Module):
+    """ a simple linear layer followed by a non-linearity """
+
+    def __init__(self, n_embd):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(n_embd, 4 * n_embd),   # 384 → 1536 (expand)
+            nn.ReLU(),                         # non-linearity
+            nn.Linear(4 * n_embd, n_embd),    # 1536 → 384 (project)
+            nn.Dropout(dropout),
+        )</code></pre>
+    <div class="ffn-visual">
+        <svg viewBox="0 0 600 120" class="diagram">
+            <rect x="10" y="40" width="90" height="40" rx="6" class="input-box"/>
+            <text x="55" y="63" class="box-text">384 dims</text>
+            <line x1="100" y1="60" x2="150" y2="60" class="flow-line" marker-end="url(#arrow)"/>
+            <rect x="150" y="25" width="100" height="70" rx="6" class="expand-box"/>
+            <text x="200" y="55" class="box-text">Linear<tspan x="200" dy="15" font-size="10">384→1536</tspan></text>
+            <line x1="250" y1="60" x2="290" y2="60" class="flow-line" marker-end="url(#arrow)"/>
+            <rect x="290" y="35" width="60" height="50" rx="6" class="relu-box"/>
+            <text x="320" y="63" class="box-text">ReLU</text>
+            <line x1="350" y1="60" x2="390" y2="60" class="flow-line" marker-end="url(#arrow)"/>
+            <rect x="390" y="25" width="100" height="70" rx="6" class="proj-box"/>
+            <text x="440" y="55" class="box-text">Linear<tspan x="440" dy="15" font-size="10">1536→384</tspan></text>
+            <line x1="490" y1="60" x2="530" y2="60" class="flow-line" marker-end="url(#arrow)"/>
+            <rect x="530" y="40" width="60" height="40" rx="6" class="output-box"/>
+            <text x="560" y="63" class="box-text">384</text>
+        </svg>
+    </div>
+    <div class="explain-box">
+        <p><strong>4× expansion ratio:</strong> Following the original Transformer paper, the inner dimension is 4× the model dimension. This gives the network more capacity to learn complex functions in the "compute" phase, before projecting back down.</p>
+        <p><strong>Attention ≈ communication. FFN ≈ computation.</strong> Attention lets tokens share information; the FFN lets each token individually process what it learned.</p>
+    </div>
+</section>
+
+<section>
+    <h3>Block — Putting It Together</h3>
+    <pre><code class="language-python">class Block(nn.Module):
+    """ Transformer block: communication followed by computation """
+
+    def __init__(self, n_embd, n_head):
+        super().__init__()
+        head_size = n_embd // n_head       # 384 // 6 = 64
+        self.sa   = MultiHeadAttention(n_head, head_size)
+        self.ffwd = FeedFoward(n_embd)
+        self.ln1  = nn.LayerNorm(n_embd)   # pre-norm
+        self.ln2  = nn.LayerNorm(n_embd)
+
+    def forward(self, x):
+        x = x + self.sa(self.ln1(x))      # residual + attention
+        x = x + self.ffwd(self.ln2(x))    # residual + FFN
+        return x</code></pre>
+    <div class="block-diagram" id="block-diagram">
+        <svg viewBox="0 0 700 350" class="diagram">
+            <!-- Main flow -->
+            <text x="350" y="25" class="diagram-title">Pre-Norm Transformer Block (GPT-2 style)</text>
+
+            <!-- Input -->
+            <rect x="300" y="290" width="100" height="35" rx="6" class="input-box"/>
+            <text x="350" y="312" class="box-text">Input x</text>
+
+            <!-- LN1 -->
+            <rect x="300" y="230" width="100" height="30" rx="6" class="norm-box"/>
+            <text x="350" y="249" class="box-text">LayerNorm</text>
+            <line x1="350" y1="290" x2="350" y2="260" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- MHA -->
+            <rect x="285" y="170" width="130" height="35" rx="6" class="attn-box"/>
+            <text x="350" y="192" class="box-text">Multi-Head Attn</text>
+            <line x1="350" y1="230" x2="350" y2="205" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- Add 1 -->
+            <circle cx="350" cy="145" r="14" class="add-circle"/>
+            <text x="350" y="150" class="add-text">+</text>
+            <line x1="350" y1="170" x2="350" y2="159" class="flow-line"/>
+
+            <!-- Residual 1 -->
+            <line x1="200" y1="307" x2="200" y2="145" class="residual-line"/>
+            <line x1="200" y1="145" x2="336" y2="145" class="residual-line" marker-end="url(#arrow)"/>
+            <text x="180" y="220" class="residual-label" transform="rotate(-90, 180, 220)">residual</text>
+
+            <!-- LN2 -->
+            <rect x="300" y="100" width="100" height="30" rx="6" class="norm-box"/>
+            <text x="350" y="119" class="box-text">LayerNorm</text>
+            <line x1="350" y1="131" x2="350" y2="130" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- FFN -->
+            <rect x="300" y="55" width="100" height="30" rx="6" class="ffn-box"/>
+            <text x="350" y="74" class="box-text">Feed Forward</text>
+            <line x1="350" y1="100" x2="350" y2="85" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- Add 2 -->
+            <circle cx="350" cy="42" r="14" class="add-circle"/>
+            <text x="350" y="47" class="add-text">+</text>
+            <line x1="350" y1="55" x2="350" y2="56" class="flow-line"/>
+
+            <!-- Residual 2 -->
+            <line x1="500" y1="145" x2="500" y2="42" class="residual-line"/>
+            <line x1="500" y1="42" x2="364" y2="42" class="residual-line" marker-end="url(#arrow)"/>
+            <line x1="364" y1="145" x2="500" y2="145" class="residual-line"/>
+            <text x="520" y="100" class="residual-label" transform="rotate(-90, 520, 100)">residual</text>
+        </svg>
+    </div>
+    <div class="explain-box small">
+        <p><strong>Pre-norm</strong> (GPT-2 style): LayerNorm is applied <em>before</em> each sub-layer, not after. This leads to more stable training.</p>
+        <p><strong>Residual connections</strong> (<code>x = x + ...</code>): Allow gradients to flow directly through the network, preventing vanishing gradients in deep models. Also allows layers to learn "refinements" rather than full transformations.</p>
+    </div>
+</section>
+</section>
+
+<!-- ==================== PART 5: FULL GPT MODEL ==================== -->
+<section>
+<section>
+    <h2 class="section-title">Part 5</h2>
+    <h1 class="gradient-text">The Full GPT Model</h1>
+    <p>Assembling all the pieces into a language model</p>
+</section>
+
+<section>
+    <h3>GPTLanguageModel — __init__</h3>
+    <pre><code class="language-python">class GPTLanguageModel(nn.Module):
+
+    def __init__(self):
+        super().__init__()
+        self.token_embedding_table = nn.Embedding(
+            vocab_size, n_embd)        # 65 → 384
+        self.position_embedding_table = nn.Embedding(
+            block_size, n_embd)        # 256 → 384
+        self.blocks = nn.Sequential(
+            *[Block(n_embd, n_head=n_head)
+              for _ in range(n_layer)]) # 6 transformer blocks
+        self.ln_f = nn.LayerNorm(n_embd)  # final layer norm
+        self.lm_head = nn.Linear(
+            n_embd, vocab_size)        # 384 → 65 (logits)
+
+        self.apply(self._init_weights) # custom initialization</code></pre>
+</section>
+
+<section>
+    <h3>Full Architecture Diagram</h3>
+    <div class="full-arch" id="full-arch">
+        <svg viewBox="0 0 800 550" class="diagram large">
+            <text x="400" y="25" class="diagram-title">GPT Language Model — Full Architecture</text>
+
+            <!-- Input tokens -->
+            <rect x="250" y="490" width="120" height="35" rx="6" class="input-box"/>
+            <text x="310" y="512" class="box-text">Token IDs (B,T)</text>
+
+            <!-- Token Embedding -->
+            <rect x="100" y="425" width="140" height="35" rx="6" class="emb-box"/>
+            <text x="170" y="447" class="box-text">Token Embedding<tspan x="170" dy="13" font-size="9">65 → 384</tspan></text>
+            <line x1="280" y1="490" x2="170" y2="460" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- Position Embedding -->
+            <rect x="400" y="425" width="160" height="35" rx="6" class="emb-box"/>
+            <text x="480" y="447" class="box-text">Position Embedding<tspan x="480" dy="13" font-size="9">256 → 384</tspan></text>
+            <line x1="350" y1="490" x2="480" y2="460" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- Add embeddings -->
+            <circle cx="310" cy="395" r="14" class="add-circle"/>
+            <text x="310" y="400" class="add-text">+</text>
+            <line x1="170" y1="425" x2="300" y2="400" class="flow-line"/>
+            <line x1="480" y1="425" x2="320" y2="400" class="flow-line"/>
+
+            <!-- Blocks -->
+            <rect x="240" y="230" width="140" height="140" rx="8" class="blocks-box"/>
+            <text x="310" y="270" class="box-text">Transformer</text>
+            <text x="310" y="290" class="box-text">Blocks</text>
+            <text x="310" y="315" class="box-text-sub">× 6</text>
+            <text x="310" y="345" class="box-text-detail">MultiHead Attn<tspan x="310" dy="14">+ Feed Forward</tspan><tspan x="310" dy="14">+ LayerNorm</tspan></text>
+            <line x1="310" y1="381" x2="310" y2="370" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- Final LN -->
+            <rect x="260" y="180" width="100" height="30" rx="6" class="norm-box"/>
+            <text x="310" y="199" class="box-text">LayerNorm</text>
+            <line x1="310" y1="230" x2="310" y2="210" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- LM Head -->
+            <rect x="240" y="120" width="140" height="35" rx="6" class="lmhead-box"/>
+            <text x="310" y="142" class="box-text">Linear Head<tspan x="310" dy="13" font-size="9">384 → 65 (vocab)</tspan></text>
+            <line x1="310" y1="180" x2="310" y2="155" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- Output -->
+            <rect x="250" y="60" width="120" height="35" rx="6" class="output-box"/>
+            <text x="310" y="82" class="box-text">Logits (B,T,65)</text>
+            <line x1="310" y1="120" x2="310" y2="95" class="flow-line" marker-end="url(#arrow)"/>
+
+            <!-- Parameter count -->
+            <rect x="580" y="250" width="180" height="100" rx="8" class="stats-box"/>
+            <text x="670" y="275" class="stats-title">Parameters</text>
+            <text x="670" y="300" class="stats-text">Total: ~10.4M</text>
+            <text x="670" y="318" class="stats-text" font-size="10">Embeddings: ~172K</text>
+            <text x="670" y="334" class="stats-text" font-size="10">Attention: ~5.3M</text>
+            <text x="670" y="350" class="stats-text" font-size="10">FFN: ~4.7M</text>
+        </svg>
+    </div>
+</section>
+
+<section>
+    <h3>Forward Pass &amp; Loss</h3>
+    <pre><code class="language-python">def forward(self, idx, targets=None):
+    B, T = idx.shape
+
+    tok_emb = self.token_embedding_table(idx)   # (B,T,C)
+    pos_emb = self.position_embedding_table(
+        torch.arange(T, device=device))          # (T,C)
+    x = tok_emb + pos_emb     # combine both embeddings
+    x = self.blocks(x)        # pass through 6 blocks
+    x = self.ln_f(x)          # final layer norm
+    logits = self.lm_head(x)  # project to vocab  (B,T,65)
+
+    if targets is None:
+        loss = None
+    else:
+        B, T, C = logits.shape
+        logits = logits.view(B*T, C)    # flatten for CE
+        targets = targets.view(B*T)
+        loss = F.cross_entropy(logits, targets)
+
+    return logits, loss</code></pre>
+    <div class="explain-box">
+        <p><strong>Position embeddings</strong> are <em>learned</em> (not sinusoidal like the original Transformer). <code>torch.arange(T)</code> creates [0, 1, 2, ..., T-1] — each position gets its own learned vector.</p>
+        <p><strong>Cross-entropy loss:</strong> Compares the model's predicted probability distribution (logits) against the actual next character. Lower loss = better predictions.</p>
+    </div>
+</section>
+
+<section>
+    <h3>Weight Initialization</h3>
+    <pre><code class="language-python">def _init_weights(self, module):
+    if isinstance(module, nn.Linear):
+        torch.nn.init.normal_(module.weight,
+                              mean=0.0, std=0.02)
+        if module.bias is not None:
+            torch.nn.init.zeros_(module.bias)
+    elif isinstance(module, nn.Embedding):
+        torch.nn.init.normal_(module.weight,
+                              mean=0.0, std=0.02)</code></pre>
+    <div class="explain-box">
+        <p><strong>Why 0.02?</strong> This follows GPT-2's initialization scheme. Small random weights (mean=0, std=0.02) prevent large activations at the start of training. Biases start at zero. This seemingly small detail is crucial for training stability — bad initialization can make training fail entirely.</p>
+    </div>
+</section>
+
+<section>
+    <h3>generate() — Text Generation</h3>
+    <pre><code class="language-python">def generate(self, idx, max_new_tokens):
+    for _ in range(max_new_tokens):
+        # Crop to last block_size tokens (context window)
+        idx_cond = idx[:, -block_size:]
+        # Forward pass
+        logits, loss = self(idx_cond)
+        # Get logits for the LAST position only
+        logits = logits[:, -1, :]        # (B, C)
+        # Convert to probabilities
+        probs = F.softmax(logits, dim=-1) # (B, C)
+        # Sample from the distribution
+        idx_next = torch.multinomial(
+            probs, num_samples=1)         # (B, 1)
+        # Append to the sequence
+        idx = torch.cat(
+            (idx, idx_next), dim=1)       # (B, T+1)
+    return idx</code></pre>
+    <div class="generation-visual">
+        <div class="gen-steps" id="gen-animation">
+            <div class="gen-step">
+                <span class="gen-label">Context:</span>
+                <span class="gen-tokens" id="gen-context">▌</span>
+            </div>
+            <div class="gen-step">
+                <span class="gen-label">Probs:</span>
+                <div class="prob-bars" id="gen-probs"></div>
+            </div>
+            <div class="gen-step">
+                <span class="gen-label">Output:</span>
+                <span class="gen-output" id="gen-output"></span>
+            </div>
+        </div>
+        <button class="demo-btn" onclick="animateGeneration()">Simulate generation ▶</button>
+    </div>
+</section>
+</section>
+
+<!-- ==================== PART 6: TRAINING ==================== -->
+<section>
+<section>
+    <h2 class="section-title">Part 6</h2>
+    <h1 class="gradient-text">Training &amp; Generation</h1>
+    <p>Putting it all together — the training loop</p>
+</section>
+
+<section>
+    <h3>The Training Loop</h3>
+    <pre><code class="language-python"># Create model and move to GPU
+model = GPTLanguageModel()
+m = model.to(device)
+print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
+# → 10.788929 M parameters
+
+# AdamW optimizer
+optimizer = torch.optim.AdamW(
+    model.parameters(), lr=learning_rate)  # lr=3e-4
+
+for iter in range(max_iters):       # max_iters = 5000
+    # Evaluate every 500 steps
+    if iter % eval_interval == 0 or iter == max_iters - 1:
+        losses = estimate_loss()
+        print(f"step {iter}: train loss {losses['train']:.4f},"
+              f" val loss {losses['val']:.4f}")
+
+    # Sample a batch
+    xb, yb = get_batch('train')
+
+    # Forward pass + compute loss
+    logits, loss = model(xb, yb)
+
+    # Backward pass
+    optimizer.zero_grad(set_to_none=True)  # reset gradients
+    loss.backward()                         # compute gradients
+    optimizer.step()                        # update weights</code></pre>
+</section>
+
+<section>
+    <h3>Training Loss Curve</h3>
+    <div class="loss-chart-container">
+        <canvas id="lossChart" width="700" height="350"></canvas>
+    </div>
+    <div class="explain-box small">
+        <p><strong>AdamW</strong> (Adam with decoupled weight decay) is the go-to optimizer for transformers. The learning rate 3e-4 is a common "good default" for small models. Training converges in ~5000 steps — about 5 minutes on a modern GPU.</p>
+        <p><strong>Overfitting gap:</strong> The gap between train and val loss shows some overfitting — the model has memorized parts of the training data. More data or stronger regularization would help.</p>
+    </div>
+</section>
+
+<section>
+    <h3>Generated Output</h3>
+    <pre><code class="language-python"># Generate from the trained model
+context = torch.zeros((1, 1), dtype=torch.long, device=device)
+print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))</code></pre>
+    <div class="output-sample">
+        <div class="output-header">Sample output after 5000 training steps:</div>
+        <div class="output-body" id="typing-output">
+DUKE OF YORK:
+Comfort, my lord; and so I do remain
+That thou art banish'd from the very thought
+Of our most gracious regent of this land;
+And we shall be satisfied with the sight
+Of these opposed eyes to the state,
+As he is struck with death in the people.
+
+GLOUCESTER:
+I would the gods had made thee more fortunate,
+So thou should'st be more pitiful;
+But O, what a change is here!
+        </div>
+    </div>
+    <div class="explain-box small">
+        <p>Not real Shakespeare, but remarkably coherent for a character-level model trained on a single GPU! It has learned English words, punctuation, character names, verse structure, and dramatic dialogue format.</p>
+    </div>
+</section>
+</section>
+
+<!-- ==================== SUMMARY ==================== -->
+<section>
+<section>
+    <h2 class="gradient-text">Architecture Summary</h2>
+    <div class="summary-grid">
+        <div class="summary-card">
+            <h4>Data Pipeline</h4>
+            <ul>
+                <li>Character-level tokenizer (65 vocab)</li>
+                <li>90/10 train/val split</li>
+                <li>Random batch sampling</li>
+                <li>Input → target shift by 1</li>
+            </ul>
+        </div>
+        <div class="summary-card">
+            <h4>Model</h4>
+            <ul>
+                <li>Token + position embeddings</li>
+                <li>6 transformer blocks</li>
+                <li>6 attention heads (64d each)</li>
+                <li>384 embedding dimension</li>
+            </ul>
+        </div>
+        <div class="summary-card">
+            <h4>Each Block</h4>
+            <ul>
+                <li>Pre-LayerNorm</li>
+                <li>Multi-head self-attention</li>
+                <li>Feed-forward (4× expansion)</li>
+                <li>Residual connections</li>
+            </ul>
+        </div>
+        <div class="summary-card">
+            <h4>Training</h4>
+            <ul>
+                <li>Cross-entropy loss</li>
+                <li>AdamW optimizer (lr=3e-4)</li>
+                <li>5000 iterations</li>
+                <li>~10.4M parameters</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>From nanoGPT to GPT-4</h2>
+    <div class="comparison-table">
+        <table>
+            <thead>
+                <tr><th></th><th>This Model</th><th>GPT-2</th><th>GPT-3</th><th>GPT-4</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Parameters</td><td>10.4M</td><td>1.5B</td><td>175B</td><td>~1.8T*</td></tr>
+                <tr><td>Context</td><td>256</td><td>1,024</td><td>2,048</td><td>128K</td></tr>
+                <tr><td>Vocab</td><td>65 (char)</td><td>50,257</td><td>50,257</td><td>~100K</td></tr>
+                <tr><td>Layers</td><td>6</td><td>48</td><td>96</td><td>~120*</td></tr>
+                <tr><td>Heads</td><td>6</td><td>25</td><td>96</td><td>~96*</td></tr>
+                <tr><td>d_model</td><td>384</td><td>1,600</td><td>12,288</td><td>~??</td></tr>
+            </tbody>
+        </table>
+        <p class="table-note">* GPT-4 details are estimated/rumored. The core architecture is the same — just scaled up massively with more data, RLHF, and engineering.</p>
+    </div>
+</section>
+
+<section>
+    <h2>Key Takeaways</h2>
+    <div class="takeaways">
+        <div class="takeaway">
+            <span class="takeaway-num">1</span>
+            <p><strong>The Transformer is simple.</strong> The entire GPT architecture fits in ~200 lines of PyTorch. The core idea — attention + feed-forward + residuals + layer norm — is elegant and powerful.</p>
+        </div>
+        <div class="takeaway">
+            <span class="takeaway-num">2</span>
+            <p><strong>Attention is the key innovation.</strong> Self-attention lets every token dynamically decide which other tokens to "pay attention to" — a learned, data-dependent communication channel.</p>
+        </div>
+        <div class="takeaway">
+            <span class="takeaway-num">3</span>
+            <p><strong>Scale is what made GPT work.</strong> This model and GPT-4 share the same architecture. The difference is parameters, data, compute, and fine-tuning — not fundamental design.</p>
+        </div>
+    </div>
+    <div class="credits">
+        <p>Based on Andrej Karpathy's <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank">"Let's build GPT: from scratch, in code, spelled out"</a></p>
+        <p>Code: <a href="https://github.com/karpathy/ng-video-lecture" target="_blank">github.com/karpathy/ng-video-lecture</a></p>
+    </div>
+</section>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="interactive.js"></script>
+<script>
+Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'slide',
+    backgroundTransition: 'fade',
+    plugins: [ RevealHighlight ],
+    width: 1200,
+    height: 700,
+    margin: 0.04,
+});
+</script>
+</body>
+</html>
