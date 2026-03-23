@@ -28,6 +28,13 @@ A collection of projects exploring large language models — from transformer in
 | [ReAct Math Agent](https://github.com/BrendanJamesLynskey/ReAct_math_agent) | Browser-based ReAct agent that solves maths problems step-by-step with a local Ollama LLM, visualising the reasoning loop |
 | [Research Digest Agent](https://github.com/BrendanJamesLynskey/Research_Digest_Agent) | Autonomous research agent that searches the web, reads sources, and produces structured markdown digests (Claude or Ollama) |
 
+## Anthropic Claude
+
+| Project | Description |
+|---------|-------------|
+| [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | 10-part interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity workflows, and future capabilities |
+| [Claude Certifications & Training](https://brendanjameslynskey.github.io/Claude/certifications-report/) | Advisory report on Claude AI credentials — official certs, cloud provider exams, free courses, productivity and employability analysis |
+
 ## Articles & Reference
 
 | Project | Description |
