@@ -35,6 +35,21 @@ A collection of projects exploring large language models — from transformer in
 | [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | 10-part interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity workflows, and future capabilities |
 | [Claude Certifications & Training](https://brendanjameslynskey.github.io/Claude/certifications-report/) | Advisory report on Claude AI credentials — official certs, cloud provider exams, free courses, productivity and employability analysis |
 
+## CUDA Programming
+
+| Project | Description |
+|---------|-------------|
+| [GPU Architecture & the CUDA Execution Model](https://brendanjameslynskey.github.io/CUDA_01_GPU_Architecture/) | Visual deep dive into SMs, warps, SIMT execution, thread hierarchy, and how GPU hardware maps to CUDA's programming model |
+| [Your First CUDA Kernel](https://brendanjameslynskey.github.io/CUDA_02_First_Kernel/) | From `nvcc` setup to vector addition — host/device workflow, memory allocation, kernel launch syntax, error handling |
+| [Thread Hierarchy & Indexing](https://brendanjameslynskey.github.io/CUDA_03_Thread_Hierarchy/) | Grids, blocks, threads, warps — how to map problem dimensions to launch configurations with worked index calculations |
+| [Memory Hierarchy](https://brendanjameslynskey.github.io/CUDA_04_Memory_Hierarchy/) | Global, shared, constant, texture, and register memory — access patterns, bank conflicts, coalescing rules, and when to use each |
+| [Matrix Multiplication — Naive to Tiled](https://brendanjameslynskey.github.io/CUDA_05_Matrix_Multiply/) | Step-by-step optimisation from a naive O(n³) kernel to shared-memory tiled multiplication with performance benchmarks |
+| [Synchronisation & Atomics](https://brendanjameslynskey.github.io/CUDA_06_Synchronisation/) | `__syncthreads()`, warp-level primitives, atomic operations, race conditions, and parallel reduction patterns |
+| [Profiling with Nsight](https://brendanjameslynskey.github.io/CUDA_07_Profiling/) | Hands-on profiling workflow with Nsight Systems and Nsight Compute — finding bottlenecks, occupancy analysis, memory throughput |
+| [Streams & Async Execution](https://brendanjameslynskey.github.io/CUDA_08_Streams/) | Overlapping compute and data transfer, CUDA streams, events, concurrency patterns, and the default stream trap |
+| [Libraries & Ecosystem](https://brendanjameslynskey.github.io/CUDA_09_Libraries/) | cuBLAS, cuDNN, Thrust, cuRAND, cuFFT — when to write custom kernels vs use optimised libraries, with examples |
+| [Hardware Platforms for CUDA Learning](https://brendanjameslynskey.github.io/CUDA_10_Hardware/) | Practical buying guide — DGX Spark, consumer GPUs, cloud instances, Google Colab — cost, capability, and recommendations |
+
 ## Articles & Reference
 
 | Project | Description |
