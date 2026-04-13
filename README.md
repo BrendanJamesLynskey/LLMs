@@ -32,7 +32,7 @@ A collection of projects exploring large language models — from transformer in
 
 | Project | Description |
 |---------|-------------|
-| [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | 14-part interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity, Claude Desktop, Claude Code Desktop, Cowork, and Chat Desktop |
+| [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | Interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity, Claude Desktop, plus hands-on workflow walkthroughs with terminal session recordings |
 
 ## CUDA Programming
 
