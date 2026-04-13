@@ -32,8 +32,7 @@ A collection of projects exploring large language models — from transformer in
 
 | Project | Description |
 |---------|-------------|
-| [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | 10-part interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity workflows, and future capabilities |
-| [Claude Certifications & Training](https://brendanjameslynskey.github.io/Claude/certifications-report/) | Advisory report on Claude AI credentials — official certs, cloud provider exams, free courses, productivity and employability analysis |
+| [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | 14-part interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity, Claude Desktop, Claude Code Desktop, Cowork, and Chat Desktop |
 
 ## CUDA Programming
 
