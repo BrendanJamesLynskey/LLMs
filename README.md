@@ -34,6 +34,21 @@ A collection of projects exploring large language models — from transformer in
 |---------|-------------|
 | [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | Interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity, Claude Desktop, plus hands-on workflow walkthroughs with terminal session recordings |
 
+## Local LLM Hosting
+
+| Project | Description |
+|---------|-------------|
+| [Why Host Locally — The Landscape](https://brendanjameslynskey.github.io/Local_LLM_01_Landscape/) | Drivers, cost model, and a map of the local-inference ecosystem — Ollama, vLLM, llama.cpp, TGI, SGLang, TensorRT-LLM, LMDeploy, MLC — with an interactive "what should I run?" picker |
+| [Ollama — Zero-Friction Local LLMs](https://brendanjameslynskey.github.io/Local_LLM_02_Ollama/) | Ollama architecture, Modelfiles, REST and OpenAI-compat APIs, VRAM tuning, the KV-cache-quant trick, with an interactive sizing calculator |
+| [Inside vLLM — PagedAttention & Continuous Batching](https://brendanjameslynskey.github.io/Local_LLM_03_vLLM_Architecture/) | Why vLLM is 5–20× faster — KV fragmentation, paged attention, continuous batching, prefix caching, chunked prefill, speculative decoding, multi-LoRA, with a live page-allocation visualiser |
+| [vLLM in Docker on NVIDIA GPUs](https://brendanjameslynskey.github.io/Local_LLM_04_vLLM_Docker/) | From a blank Linux box to an OpenAI-compatible vLLM endpoint — NVIDIA Container Toolkit, the vllm/vllm-openai image, docker compose, operational gotchas, with an interactive command builder |
+| [Multi-GPU Parallelism for Serving](https://brendanjameslynskey.github.io/Local_LLM_05_Multi_GPU_Parallelism/) | Tensor, pipeline, data, and expert parallel — NVLink, NVSwitch, NCCL, InfiniBand, multi-node patterns, and an interactive strategy planner that works out TP/PP/DP/EP for your hardware |
+| [Framework Shootout](https://brendanjameslynskey.github.io/Local_LLM_06_Frameworks/) | Feature matrix and honest throughput/latency numbers for vLLM, Ollama, llama.cpp, TGI, SGLang, TensorRT-LLM, LMDeploy, MLC, with an interactive filter |
+| [Quantization for Local Hosting](https://brendanjameslynskey.github.io/Local_LLM_07_Quantization/) | GGUF, AWQ, GPTQ, FP8, INT4, MX-FP4 — bit layouts, perplexity impact, framework support, and an interactive format picker |
+| [Deploying on NVIDIA DGX Spark](https://brendanjameslynskey.github.io/Local_LLM_08_DGX_Spark/) | Practical vLLM on a GB10 Grace-Blackwell workstation — unified memory, arm64 gotchas, realistic model/concurrency matrix, two-Spark pairing over 200 GbE |
+| [Sources of Non-Determinism in LLM Serving](https://brendanjameslynskey.github.io/Local_LLM_09_Determinism/) | Why the same prompt gives different tokens twice — sampling, non-associative FP, batch-size dependence, scheduler drift, hardware/version differences, with an interactive "what would differ?" tool |
+| [Production Patterns for Local LLM Serving](https://brendanjameslynskey.github.io/Local_LLM_10_Production/) | Routing, prefix & semantic caching, speculative decoding, observability, SLOs, rollouts, cost accounting, with an interactive SLO planner |
+
 ## CUDA Programming
 
 | Project | Description |
