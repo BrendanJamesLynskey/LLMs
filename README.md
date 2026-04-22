@@ -48,6 +48,7 @@ A collection of projects exploring large language models — from transformer in
 | [Deploying on NVIDIA DGX Spark](https://brendanjameslynskey.github.io/Local_LLM_08_DGX_Spark/) | Practical vLLM on a GB10 Grace-Blackwell workstation — unified memory, arm64 gotchas, realistic model/concurrency matrix, two-Spark pairing over 200 GbE |
 | [Sources of Non-Determinism in LLM Serving](https://brendanjameslynskey.github.io/Local_LLM_09_Determinism/) | Why the same prompt gives different tokens twice — sampling, non-associative FP, batch-size dependence, scheduler drift, hardware/version differences, with an interactive "what would differ?" tool |
 | [Production Patterns for Local LLM Serving](https://brendanjameslynskey.github.io/Local_LLM_10_Production/) | Routing, prefix & semantic caching, speculative decoding, observability, SLOs, rollouts, cost accounting, with an interactive SLO planner |
+| [Deploying on NVIDIA GPUs — Architectures, Memory, Multi-GPU](https://brendanjameslynskey.github.io/Local_LLM_11_NVIDIA_GPUs/) | NVIDIA architecture families (Ampere → Blackwell), memory types (GDDR6/6X/7, HBM2e/3/3e, LPDDR5x, EGM), NVLink / NVSwitch / PCIe P2P / IOMMU, heterogeneous GPU ganging, MIG, and the Ollama/vLLM nuances per GPU class — with interactive GPU and ganging pickers |
 
 ## CUDA Programming
 
