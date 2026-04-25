@@ -50,6 +50,21 @@ A collection of projects exploring large language models — from transformer in
 | [Production Patterns for Local LLM Serving](https://brendanjameslynskey.github.io/Local_LLM_10_Production/) | Routing, prefix & semantic caching, speculative decoding, observability, SLOs, rollouts, cost accounting, with an interactive SLO planner |
 | [Deploying on NVIDIA GPUs — Architectures, Memory, Multi-GPU](https://brendanjameslynskey.github.io/Local_LLM_11_NVIDIA_GPUs/) | NVIDIA architecture families (Ampere → Blackwell), memory types (GDDR6/6X/7, HBM2e/3/3e, LPDDR5x, EGM), NVLink / NVSwitch / PCIe P2P / IOMMU, heterogeneous GPU ganging, MIG, and the Ollama/vLLM nuances per GPU class — with interactive GPU and ganging pickers |
 
+## NVIDIA GPU Architectures
+
+| Project | Description |
+|---------|-------------|
+| [The NVIDIA GPU Family Tree — Pascal to Blackwell](https://brendanjameslynskey.github.io/NVIDIA_GPU_01_Architecture_Overview/) | Family timeline from Pascal (2016) to Blackwell (2024) — process nodes, dies, transistor counts, memory types and what each generation unlocked, with an interactive family explorer |
+| [Inside the SM — How NVIDIA's Streaming Multiprocessor Evolved](https://brendanjameslynskey.github.io/NVIDIA_GPU_02_SM_Evolution/) | Streaming Multiprocessor internals across Pascal, Volta, Turing, Ampere, Hopper, Ada and Blackwell — schedulers, register file, tensor cores, TMA, thread-block clusters, with an interactive SM explorer |
+| [Tensor Cores — Five Generations of NVIDIA Matmul Hardware](https://brendanjameslynskey.github.io/NVIDIA_GPU_03_Tensor_Cores/) | Every tensor-core generation from Volta's first 4×4×4 FP16 MMA to Blackwell's MX-FP4 microscaling — formats, MMA shapes, sparsity, Transformer Engine, with an interactive precision-throughput calculator |
+| [Memory Hierarchy — Registers, Caches, HBM, GDDR, and Why Bandwidth Wins](https://brendanjameslynskey.github.io/NVIDIA_GPU_04_Memory_Hierarchy/) | On-chip and off-chip memory across NVIDIA GPUs — registers, shared, L1/L2, HBM2e/3/3e, GDDR6/6X/7, LPDDR5x unified, and Hopper's TMA, with an interactive decode-speed estimator |
+| [NVLink & NVSwitch — How NVIDIA Builds One Big GPU Out of Many](https://brendanjameslynskey.github.io/NVIDIA_GPU_05_NVLink_NVSwitch/) | Scale-up interconnect from NVLink 1 (Pascal) to NVLink 5 (Blackwell NVL72) — NVSwitch fabrics, NVLink-C2C, the rack-scale NVL72 superpod, vs PCIe and InfiniBand, with an interactive fabric planner |
+| [Ampere — A100, RTX 30, and the Birth of the LLM Era](https://brendanjameslynskey.github.io/NVIDIA_GPU_06_Ampere/) | Deep dive into the GA100 datacenter die and GA10x consumer family — 3rd-gen tensor cores (TF32, BF16, 2:4 sparsity), MIG hardware partitioning, NVLink 3 with NVSwitch 2, with an interactive SKU picker |
+| [Hopper — H100, FP8, and the Transformer Engine](https://brendanjameslynskey.github.io/NVIDIA_GPU_07_Hopper/) | Deep dive into GH100, H100/H200/GH200 — 4th-gen tensor cores with native FP8, the Transformer Engine, the Tensor Memory Accelerator, thread-block clusters and DSMEM, DPX, NVLink 4, with an interactive Hopper variant picker |
+| [Ada Lovelace — RTX 40, L40S, and Consumer-Class AI](https://brendanjameslynskey.github.io/NVIDIA_GPU_08_Ada_Lovelace/) | Deep dive into AD102 and the RTX 40 / L40S / L4 family — 4th-gen RT cores with opacity and displaced micro-meshes, DLSS 3 with the Optical Flow Accelerator, the FP8 split between consumer and workstation, the consequences of dropping NVLink, with an interactive Ada SKU picker |
+| [Blackwell — Dual-Die, FP4, and the NVL72 Rack-Scale GPU](https://brendanjameslynskey.github.io/NVIDIA_GPU_09_Blackwell/) | Deep dive into B100/B200/GB200 — dual-die NV-HBI packaging, 5th-gen tensor cores with MX-FP4 microscaling, 2nd-gen Transformer Engine, RAS engine, decompression engine, NVLink 5, the GB200 NVL72 superpod, with an interactive throughput planner |
+| [Software Stack & Performance — From CUDA to LLM Throughput](https://brendanjameslynskey.github.io/NVIDIA_GPU_10_Software_and_Performance/) | The CUDA software stack — driver, runtime, cuBLAS/cuBLASLt, cuDNN, CUTLASS, Transformer Engine, NCCL, Triton, TensorRT-LLM — and a performance model that turns a GPU spec sheet into LLM tok/s, with an interactive end-to-end calculator |
+
 ## CUDA Programming
 
 | Project | Description |
