@@ -2,20 +2,39 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Each entry below points to a **sub-hub repo** that lists the leaf decks for that area. Sub-hubs marked **roadmap** have their topic outlines published; the leaf decks land progressively.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 18 sub-hubs below collectively re-export ~120 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 42 newly-added decks across 11 series, plus the directly-linked code repos and articles below.
 
 ---
 
-## Foundations & Internals
+## Cloneable code repositories
+
+Most leaves are interactive HTML presentations rendered on GitHub Pages. The repos below are different — they ship runnable source you can clone and execute outside the browser. Listed here for direct discoverability.
+
+| Repo | Sub-hub | What's inside |
+|------|---------|---------------|
+| [LLM_Transformer_Decoder_RTL](https://github.com/BrendanJamesLynskey/LLM_Transformer_Decoder_RTL) | Transformer Architecture | Synthesisable SystemVerilog implementation of a pre-norm decoder block with KV-cache, plus an 83-test verification suite |
+| [Python_Transformer_Decoder](https://github.com/BrendanJamesLynskey/Python_Transformer_Decoder) | Transformer Architecture | Step-by-step PyTorch implementation in a single Jupyter notebook — every component built from first principles |
+| [NN_data_types](https://github.com/BrendanJamesLynskey/NN_data_types) | Transformer Architecture | SystemVerilog implementations of 9 numerical formats (FP32 down to FP4) used in NN training and inference hardware |
+| [Introduction_to_LangGraph](https://github.com/BrendanJamesLynskey/Introduction_to_LangGraph) | Agents & Orchestration | Interactive slide deck plus 10 runnable examples in Python and TypeScript covering graph-based agent orchestration |
+| [ReAct_math_agent](https://github.com/BrendanJamesLynskey/ReAct_math_agent) | Agents & Orchestration | Browser-based ReAct agent that solves maths problems step-by-step with a local Ollama LLM, visualising the reasoning loop |
+| [Research_Digest_Agent](https://github.com/BrendanJamesLynskey/Research_Digest_Agent) | Agents & Orchestration | Autonomous research agent that searches the web, reads sources, and produces structured markdown digests (Claude or Ollama) |
+
+---
+
+## Sub-hub index
+
+Each row points to a sub-hub repo whose README and GitHub Pages site list the leaf decks for that area. The `code` marker on the Status column flags sub-hubs that include cloneable-code leaves listed above.
+
+### Foundations & Internals
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
-| [Transformer Architecture](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Architecture) | live · 7 decks | Decoder-only transformer internals — visual walkthrough, every-computation forward pass, RTL accelerator, nanoGPT, PyTorch from scratch, NN data types, hardware-aware quantisation |
+| [Transformer Architecture](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Architecture) | live · 7 decks · 3 code | Decoder-only transformer internals — visual walkthrough, every-computation forward pass, RTL accelerator, nanoGPT, PyTorch from scratch, NN data types, hardware-aware quantisation |
 | [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) | live · 5 decks | Architectures beyond the vanilla decoder — Mixture of Experts, Mamba and state-space models, long-context techniques (RoPE / YaRN / ring attention), diffusion language models, hybrids |
 | [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) | live · 5 decks | SFT pipelines, LoRA / QLoRA / DoRA / IA3, RLHF + PPO, DPO and cousins (IPO / KTO / ORPO / GRPO), Constitutional AI / RLAIF |
 | [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) | live · 3 decks | The o1 / R1 paradigm shift, scaling test-time compute, process vs outcome reward models, when to use reasoning models vs frontier+scaffolding |
 
-## Hardware & Inference
+### Hardware & Inference
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
@@ -23,7 +42,7 @@ Each entry below points to a **sub-hub repo** that lists the leaf decks for that
 | [CUDA Programming](https://github.com/BrendanJamesLynskey/LLM_Hub_CUDA) | live · 10 decks | From your first kernel to tiled matmul, streams, atomics, Nsight profiling — visual presentations on writing CUDA from scratch |
 | [Local LLM Hosting](https://github.com/BrendanJamesLynskey/LLM_Hub_Local_LLM_Hosting) | live · 11 decks | Self-hosting LLMs — Ollama, vLLM, llama.cpp, TGI, SGLang, Docker, multi-GPU parallelism, quantisation, determinism, production patterns |
 
-## Retrieval & Multimodality
+### Retrieval & Multimodality
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
@@ -31,16 +50,16 @@ Each entry below points to a **sub-hub repo** that lists the leaf decks for that
 | [Vision-Language Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Vision_Language) | live · 4 decks | CLIP / SigLIP, Vision Transformers, modern VLMs (Llama 3.2 V, Qwen2-VL, InternVL, Pixtral, Gemini, Claude), document AI (ColPali, Donut) |
 | [Voice & Real-Time Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Voice_RealTime) | live · 3 decks | Streaming ASR + TTS, real-time frameworks (Pipecat, LiveKit Agents, OpenAI Realtime), latency budgets and turn-taking |
 
-## Agents & Tools
+### Agents & Tools
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
-| [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) | live · 7 decks | How LLM agents work, multi-agent coordination, LangGraph, framework guides (LangGraph / CrewAI / AutoGen / OpenAI Agents), ReAct math agent, research-digest agent |
+| [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) | live · 7 decks · 3 code | How LLM agents work, multi-agent coordination, LangGraph, framework guides (LangGraph / CrewAI / AutoGen / OpenAI Agents), ReAct math agent, research-digest agent |
 | [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | live · 2 decks | How Cursor, Aider and Claude Code understand a repository and apply edits — heuristics, diff formats, architectural differences |
 | [Computer-Use & Browser Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Computer_Use) | live · 2 decks | Anthropic Computer Use, OpenAI Operator, Gemini Mariner, Browser-Use, Playwright — action schemas, screen vs DOM grounding, evals |
 | [Model Context Protocol](https://github.com/BrendanJamesLynskey/LLM_Hub_MCP) | live · 5 decks | Anthropic's open protocol for connecting LLMs to tools and data — JSON-RPC primitives, transports, server-building, OAuth 2.1 security, ecosystem and patterns |
 
-## Production & Safety
+### Production & Safety
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
@@ -48,11 +67,13 @@ Each entry below points to a **sub-hub repo** that lists the leaf decks for that
 | [LLM Evaluations](https://github.com/BrendanJamesLynskey/LLM_Hub_Evaluations) | live · 5 decks | Static benchmarks vs production evals, LLM-as-judge with its biases, eval frameworks (Inspect AI, Braintrust, Phoenix, Langfuse), drift detection, red-teaming |
 | [Safety, Alignment & Red-Teaming](https://github.com/BrendanJamesLynskey/LLM_Hub_Safety_Alignment) | live · 2 decks | Jailbreak taxonomy, defence-in-depth (Llama Guard, ShieldGemma, NeMo Guardrails), regulatory frame (NIST AI RMF, EU AI Act) |
 
-## Anthropic Claude
+### Anthropic Claude
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [Anthropic Claude](https://github.com/BrendanJamesLynskey/LLM_Hub_Anthropic_Claude) | live · 1 deck | Comprehensive presentation series on Claude — models, Claude.ai, Claude Code, API and SDKs, integrations, agents, productivity, Claude Desktop, hands-on workflow walkthroughs |
+
+---
 
 ## Articles & Reference
 
@@ -64,7 +85,7 @@ Each entry below points to a **sub-hub repo** that lists the leaf decks for that
 
 ### How this is organised
 
-- The **top-level index** (this README) lists ~18 sub-hubs grouped into five themes — Foundations & Internals, Hardware & Inference, Retrieval & Multimodality, Agents & Tools, and Production & Safety — plus Anthropic Claude.
-- Each **sub-hub repo** is a small index of leaf-deck repos in that area. The sub-hub's README and its GitHub Pages site (e.g. `https://brendanjameslynskey.github.io/LLM_Hub_RAG_Retrieval/`) both list the decks.
+- The **top-level index** (this README) lists 18 sub-hubs grouped into five themes plus Anthropic Claude, with directly-linked code repos and articles called out separately.
+- Each **sub-hub repo** is a small index of leaf-deck repos in that area. The sub-hub's `README.md` and its GitHub Pages site (e.g. `https://brendanjameslynskey.github.io/LLM_Hub_RAG_Retrieval/`) both list the decks.
 - Each **leaf deck** is its own repo (typically `Topic_NN_Title`) with a single-page interactive HTML presentation served on GitHub Pages.
-- **Live** sub-hubs link to working leaf decks; **roadmap** sub-hubs publish the topic outline while leaf decks are still being built.
+- **Status legend.** `live · N decks` — all leaves built and indexed by the sub-hub. `roadmap · N decks` — topic outline published, leaf decks landing progressively. `· N code` — sub-hub includes that many cloneable-source leaves (listed in the Cloneable code repositories table above).
