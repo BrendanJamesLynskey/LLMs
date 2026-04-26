@@ -92,6 +92,16 @@ A collection of projects exploring large language models — from transformer in
 | [Inside Hopper — FP8, TMA, Thread-Block Clusters, NVLink 4](https://brendanjameslynskey.github.io/NVIDIA_GPU_31_Hopper_Low_Level/) | Low-level deep dive into GH100 / H100 / H200 / GH200 — TSMC 4N, 4th-gen tensor cores with native FP8 at 1979 TFLOPS, WGMMA warp-group MMA, TMA, thread-block clusters and DSMEM, DPX, HBM3/HBM3e, NVLink 4 at 900 GB/s, H800/H20 export variants |
 | [Inside Blackwell — Dual-Die, MX-FP4, NVLink 5](https://brendanjameslynskey.github.io/NVIDIA_GPU_32_Blackwell_Low_Level/) | Low-level deep dive into Blackwell — dual-die B100/B200 with the 10 TB/s NV-HBI on CoWoS-L, 5th-gen tensor cores with MX-FP4/MX-FP6 microscaling at 9 PFLOPS, 2nd-gen Transformer Engine, RAS and decompression engines, TEE-IO, 192 GB HBM3e at 8 TB/s, NVLink 5, NVL72, GB200 superchip, RTX 50 series with GDDR7 |
 
+### DGX Spark
+
+| Project | Description |
+|---------|-------------|
+| [Inside the DGX Spark — GB10, 128 GB Unified, 1 PFLOP on Your Desk](https://brendanjameslynskey.github.io/NVIDIA_GPU_33_DGX_Spark_Hardware/) | Low-level look at NVIDIA's personal AI workstation — GB10 SoC pairing 20 ARM cores (Cortex-X925/A725) with a Blackwell GPU through in-package NVLink-C2C, 128 GB unified LPDDR5x at 273 GB/s, ~1 PFLOP sparse FP4 in a 170 W desktop. Block diagram, board layout, ports, cooling |
+| [Setting Up DGX Spark — From Box to First Token](https://brendanjameslynskey.github.io/NVIDIA_GPU_34_DGX_Spark_Setup/) | The setup walkthrough — unboxing, OOBE, DGX OS (Ubuntu ARM64), drivers and CUDA toolkit, NVIDIA Container Toolkit, SSH and persistent-mode, networking (Wi-Fi 7 / 1 GbE management / 200 GbE QSFP28), NGC login, and the canonical patterns for pulling your first NIM, Ollama, or vLLM model |
+| [LLM Inference on DGX Spark — Practical Numbers and Patterns](https://brendanjameslynskey.github.io/NVIDIA_GPU_35_DGX_Spark_Inference/) | Realistic tok/s on every model size from 1 B to 671 B, framework selection (Ollama/vLLM/NIM/TRT-LLM), quantisation choice (BF16/FP8/MX-FP4/AWQ-INT4), KV cache placement on unified memory, batching strategy, multimodal stacks, two-Spark pipeline parallel |
+| [DGX Spark Development Workflow](https://brendanjameslynskey.github.io/NVIDIA_GPU_36_DGX_Spark_DevWorkflow/) | Practical setup — VS Code Remote SSH, NGC containers, PyTorch on ARM64, JupyterHub for small teams, QLoRA fine-tuning at 70 B scale, dataset streaming, the HF→MX-FP4→NIM quantisation pipeline, custom Triton kernels, and the local-iteration + cloud-burst workflow |
+| [DGX Spark vs the Alternatives](https://brendanjameslynskey.github.io/NVIDIA_GPU_37_DGX_Spark_vs_Alternatives/) | Honest comparison against Mac Studio M3 Ultra, an RTX 5090 desktop, the RTX PRO 6000 Blackwell workstation, used DGX Station A100, cloud H100/B200 reservations, and a two-Spark pair — capacity, bandwidth, compute, software compatibility, power, cost-per-token. Includes a workstation recommender |
+
 ## CUDA Programming
 
 | Project | Description |
