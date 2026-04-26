@@ -80,6 +80,18 @@ A collection of projects exploring large language models — from transformer in
 | [Power & Thermal — Delivering 1000 W to a Card and Removing It Again](https://brendanjameslynskey.github.io/NVIDIA_GPU_24_Power_and_Thermal/) | How a B200 burns 1000 W and gets that power and heat managed — 12V-2x6 cabling, multi-phase VRMs, multi-rail design, transient response, GPU Boost and P-states, power capping, vapour chambers, direct-to-chip liquid cooling, with a power-and-cooling calculator |
 | [Silicon & Substrates — Process, Reticle Limits, and Multi-Die Packaging](https://brendanjameslynskey.github.io/NVIDIA_GPU_25_Process_and_Packaging/) | TSMC process lineage from 16FF through 4N/4NP to N3 and A16, the 830 mm² reticle limit and how Blackwell broke through it, NV-HBI die-to-die, CoWoS-S vs CoWoS-L vs CoWoS-R packaging, yield-driven SKU binning, and the CoWoS supply bottleneck |
 
+### Per-Architecture HW Deep Dives
+
+| Project | Description |
+|---------|-------------|
+| [Inside Pascal — The First HBM and NVLink GPU](https://brendanjameslynskey.github.io/NVIDIA_GPU_26_Pascal_Low_Level/) | Low-level look at GP100 (P100) and GP102/104/106 — block diagram, the FP-heavy GP100 SM, FP16x2 packed math, TSMC 16FF+, voltages and clocks, HBM2 packaging, GDDR5X memory, and NVLink 1.0 (4 links × 20 GB/s). Interactive SKU picker |
+| [Inside Volta — First Tensor Cores, Independent Thread Scheduling](https://brendanjameslynskey.github.io/NVIDIA_GPU_27_Volta_Low_Level/) | Low-level deep dive into GV100 — TSMC 12FF, four-partition SM with split FP/INT, first-generation tensor cores at 125 TFLOPS, independent thread scheduling, HBM2, NVLink 2.0 and NVSwitch 1 (DGX-2). Interactive SKU picker |
+| [Inside Turing — RT Cores, INT8/INT4 Tensor Cores, GDDR6](https://brendanjameslynskey.github.io/NVIDIA_GPU_28_Turing_Low_Level/) | Low-level look at TU102/104/106 RTX dies and TU116/117 budget dies — 1st-gen RT cores, 2nd-gen tensor cores (INT8/INT4), GDDR6 mainstream, NVLink 2.0 bridge, and the Tesla T4 inference card. Interactive SKU picker |
+| [Inside Ampere — 3rd-Gen Tensor Cores, 40 MB L2, MIG](https://brendanjameslynskey.github.io/NVIDIA_GPU_29_Ampere_Low_Level/) | Low-level deep dive into GA100 (TSMC 7N) and GA10x (Samsung 8N) — two SM variants, TF32/BF16/2:4 sparsity, the 40 MB L2 leap, async copy, MIG, NVLink 3.0, NVSwitch 2, HBM2e crossing 2 TB/s. Picker covers 13 SKUs |
+| [Inside Ada Lovelace — AD102, 96 MB L2, 4th-Gen RT](https://brendanjameslynskey.github.io/NVIDIA_GPU_30_Ada_Low_Level/) | Low-level deep dive into AD102–107 on TSMC 4N — doubled-FP32 SM, 4th-gen tensor cores (FP8 enabled only on L40S/RTX 6000 Ada, fused off on RTX 40), 4th-gen RT with OMM/DMM, the OFA, 96 MB L2, GDDR6X, the 12VHPWR saga, no-NVLink consequences |
+| [Inside Hopper — FP8, TMA, Thread-Block Clusters, NVLink 4](https://brendanjameslynskey.github.io/NVIDIA_GPU_31_Hopper_Low_Level/) | Low-level deep dive into GH100 / H100 / H200 / GH200 — TSMC 4N, 4th-gen tensor cores with native FP8 at 1979 TFLOPS, WGMMA warp-group MMA, TMA, thread-block clusters and DSMEM, DPX, HBM3/HBM3e, NVLink 4 at 900 GB/s, H800/H20 export variants |
+| [Inside Blackwell — Dual-Die, MX-FP4, NVLink 5](https://brendanjameslynskey.github.io/NVIDIA_GPU_32_Blackwell_Low_Level/) | Low-level deep dive into Blackwell — dual-die B100/B200 with the 10 TB/s NV-HBI on CoWoS-L, 5th-gen tensor cores with MX-FP4/MX-FP6 microscaling at 9 PFLOPS, 2nd-gen Transformer Engine, RAS and decompression engines, TEE-IO, 192 GB HBM3e at 8 TB/s, NVLink 5, NVL72, GB200 superchip, RTX 50 series with GDDR7 |
+
 ## CUDA Programming
 
 | Project | Description |
