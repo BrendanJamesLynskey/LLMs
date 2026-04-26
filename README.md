@@ -11,9 +11,9 @@ Each entry below points to a **sub-hub repo** that lists the leaf decks for that
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [Transformer Architecture](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Architecture) | live · 7 decks | Decoder-only transformer internals — visual walkthrough, every-computation forward pass, RTL accelerator, nanoGPT, PyTorch from scratch, NN data types, hardware-aware quantisation |
-| [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) | roadmap · 5 decks | Architectures beyond the vanilla decoder — Mixture of Experts, Mamba and state-space models, long-context techniques (RoPE / YaRN / ring attention), diffusion language models, hybrids |
-| [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) | roadmap · 5 decks | SFT pipelines, LoRA / QLoRA / DoRA / IA3, RLHF + PPO, DPO and cousins (IPO / KTO / ORPO / GRPO), Constitutional AI / RLAIF |
-| [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) | roadmap · 3 decks | The o1 / R1 paradigm shift, scaling test-time compute, process vs outcome reward models, when to use reasoning models vs frontier+scaffolding |
+| [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) | live · 5 decks | Architectures beyond the vanilla decoder — Mixture of Experts, Mamba and state-space models, long-context techniques (RoPE / YaRN / ring attention), diffusion language models, hybrids |
+| [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) | live · 5 decks | SFT pipelines, LoRA / QLoRA / DoRA / IA3, RLHF + PPO, DPO and cousins (IPO / KTO / ORPO / GRPO), Constitutional AI / RLAIF |
+| [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) | live · 3 decks | The o1 / R1 paradigm shift, scaling test-time compute, process vs outcome reward models, when to use reasoning models vs frontier+scaffolding |
 
 ## Hardware & Inference
 
@@ -27,26 +27,26 @@ Each entry below points to a **sub-hub repo** that lists the leaf decks for that
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
-| [RAG & Retrieval Systems](https://github.com/BrendanJamesLynskey/LLM_Hub_RAG_Retrieval) | roadmap · 7 decks | Embedding models, vector databases, hybrid search and reranking, chunking and ingestion, agentic RAG, GraphRAG, production RAG |
-| [Vision-Language Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Vision_Language) | roadmap · 4 decks | CLIP / SigLIP, Vision Transformers, modern VLMs (Llama 3.2 V, Qwen2-VL, InternVL, Pixtral, Gemini, Claude), document AI (ColPali, Donut) |
-| [Voice & Real-Time Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Voice_RealTime) | roadmap · 3 decks | Streaming ASR + TTS, real-time frameworks (Pipecat, LiveKit Agents, OpenAI Realtime), latency budgets and turn-taking |
+| [RAG & Retrieval Systems](https://github.com/BrendanJamesLynskey/LLM_Hub_RAG_Retrieval) | live · 7 decks | Embedding models, vector databases, hybrid search and reranking, chunking and ingestion, agentic RAG, GraphRAG, production RAG |
+| [Vision-Language Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Vision_Language) | live · 4 decks | CLIP / SigLIP, Vision Transformers, modern VLMs (Llama 3.2 V, Qwen2-VL, InternVL, Pixtral, Gemini, Claude), document AI (ColPali, Donut) |
+| [Voice & Real-Time Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Voice_RealTime) | live · 3 decks | Streaming ASR + TTS, real-time frameworks (Pipecat, LiveKit Agents, OpenAI Realtime), latency budgets and turn-taking |
 
 ## Agents & Tools
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) | live · 7 decks | How LLM agents work, multi-agent coordination, LangGraph, framework guides (LangGraph / CrewAI / AutoGen / OpenAI Agents), ReAct math agent, research-digest agent |
-| [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | roadmap · 2 decks | How Cursor, Aider and Claude Code understand a repository and apply edits — heuristics, diff formats, architectural differences |
-| [Computer-Use & Browser Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Computer_Use) | roadmap · 2 decks | Anthropic Computer Use, OpenAI Operator, Gemini Mariner, Browser-Use, Playwright — action schemas, screen vs DOM grounding, evals |
+| [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | live · 2 decks | How Cursor, Aider and Claude Code understand a repository and apply edits — heuristics, diff formats, architectural differences |
+| [Computer-Use & Browser Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Computer_Use) | live · 2 decks | Anthropic Computer Use, OpenAI Operator, Gemini Mariner, Browser-Use, Playwright — action schemas, screen vs DOM grounding, evals |
 | [Model Context Protocol](https://github.com/BrendanJamesLynskey/LLM_Hub_MCP) | live · 5 decks | Anthropic's open protocol for connecting LLMs to tools and data — JSON-RPC primitives, transports, server-building, OAuth 2.1 security, ecosystem and patterns |
 
 ## Production & Safety
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
-| [Production LLMOps](https://github.com/BrendanJamesLynskey/LLM_Hub_LLMOps) | roadmap · 4 decks | LLM gateways (LiteLLM, Portkey), observability (Langfuse, Phoenix), caching strategies, cost and SLO discipline |
-| [LLM Evaluations](https://github.com/BrendanJamesLynskey/LLM_Hub_Evaluations) | roadmap · 5 decks | Static benchmarks vs production evals, LLM-as-judge with its biases, eval frameworks (Inspect AI, Braintrust, Phoenix, Langfuse), drift detection, red-teaming |
-| [Safety, Alignment & Red-Teaming](https://github.com/BrendanJamesLynskey/LLM_Hub_Safety_Alignment) | roadmap · 2 decks | Jailbreak taxonomy, defence-in-depth (Llama Guard, ShieldGemma, NeMo Guardrails), regulatory frame (NIST AI RMF, EU AI Act) |
+| [Production LLMOps](https://github.com/BrendanJamesLynskey/LLM_Hub_LLMOps) | live · 4 decks | LLM gateways (LiteLLM, Portkey), observability (Langfuse, Phoenix), caching strategies, cost and SLO discipline |
+| [LLM Evaluations](https://github.com/BrendanJamesLynskey/LLM_Hub_Evaluations) | live · 5 decks | Static benchmarks vs production evals, LLM-as-judge with its biases, eval frameworks (Inspect AI, Braintrust, Phoenix, Langfuse), drift detection, red-teaming |
+| [Safety, Alignment & Red-Teaming](https://github.com/BrendanJamesLynskey/LLM_Hub_Safety_Alignment) | live · 2 decks | Jailbreak taxonomy, defence-in-depth (Llama Guard, ShieldGemma, NeMo Guardrails), regulatory frame (NIST AI RMF, EU AI Act) |
 
 ## Anthropic Claude
 
