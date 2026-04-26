@@ -34,6 +34,16 @@ A collection of projects exploring large language models — from transformer in
 |---------|-------------|
 | [Anthropic Claude Series](https://github.com/BrendanJamesLynskey/Claude) | Interactive presentation series covering all aspects of Anthropic Claude — models, Claude.ai, Claude Code, API & SDKs, integrations, agents, productivity, Claude Desktop, plus hands-on workflow walkthroughs with terminal session recordings |
 
+## Model Context Protocol (MCP)
+
+| Project | Description |
+|---------|-------------|
+| [The Model Context Protocol — A Visual Tour](https://brendanjameslynskey.github.io/MCP_01_Protocol_Overview/) | What MCP actually is on the wire — JSON-RPC 2.0 base, host/client/server roles, the five primitives (tools / resources / prompts / sampling / elicitation), capability negotiation, the full lifecycle, the version timeline from `2024-11-05` to `2025-06-18`, and a fully annotated end-to-end handshake |
+| [Transports & The Wire](https://brendanjameslynskey.github.io/MCP_02_Transports_and_Wire/) | Every byte of MCP at the transport layer — stdio framing, the deprecated HTTP+SSE legacy, modern Streamable HTTP, sessions via `Mcp-Session-Id`, resumability with `Last-Event-ID`, the security headers your server must check, and a fully annotated wire capture of one real session |
+| [Building an MCP Server](https://brendanjameslynskey.github.io/MCP_03_Building_a_Server/) | From a 30-line skeleton to production servers — tools (schema, structured output, annotations), resources (URIs, subscriptions), prompts, sampling, elicitation (2025-06-18), errors / progress / cancellation / logging, and conformance testing with the MCP Inspector. Python and TypeScript SDKs side-by-side |
+| [Security & OAuth 2.1](https://brendanjameslynskey.github.io/MCP_04_Security_and_OAuth/) | The MCP threat surface and the spec mechanisms designed to defuse it — OAuth 2.1 with PKCE, RFC 9728 / 8414 / 7591 / 8707 discovery and audience binding, the confused-deputy attack, second-channel prompt injection, tool poisoning, sandboxing tiers, logging hygiene, and a production checklist |
+| [Ecosystem & Patterns](https://brendanjameslynskey.github.io/MCP_05_Ecosystem_and_Patterns/) | Field guide to the MCP ecosystem in 2026 — every host that speaks MCP, the official reference servers, the MCP Registry, the four canonical server-design patterns (data, tools, agents, multi-server orchestration), and how distribution actually works (`uvx` / `npx` / Docker / Streamable HTTP) |
+
 ## Local LLM Hosting
 
 | Project | Description |
