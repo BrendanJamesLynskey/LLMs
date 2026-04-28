@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 18 sub-hubs below collectively re-export ~120 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 42 newly-added decks across 11 series, plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 18 sub-hubs below collectively re-export ~125 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 47 newly-added decks across 11 series (including a 5-deck companion to Sebastian Raschka's *Components of a Coding Agent*), plus the directly-linked code repos and articles below.
 
 ---
 
@@ -55,7 +55,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) | live · 7 decks · 3 code | How LLM agents work, multi-agent coordination, LangGraph, framework guides (LangGraph / CrewAI / AutoGen / OpenAI Agents), ReAct math agent, research-digest agent |
-| [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | live · 2 decks | How Cursor, Aider and Claude Code understand a repository and apply edits — heuristics, diff formats, architectural differences |
+| [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | live · 7 decks | How Cursor, Aider, Claude Code & Codex CLI work — repo understanding, edit strategies, plus a 5-deck companion to Raschka's *Components of a Coding Agent* (context, cache, tools, memory, subagents) |
 | [Computer-Use & Browser Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Computer_Use) | live · 2 decks | Anthropic Computer Use, OpenAI Operator, Gemini Mariner, Browser-Use, Playwright — action schemas, screen vs DOM grounding, evals |
 | [Model Context Protocol](https://github.com/BrendanJamesLynskey/LLM_Hub_MCP) | live · 5 decks | Anthropic's open protocol for connecting LLMs to tools and data — JSON-RPC primitives, transports, server-building, OAuth 2.1 security, ecosystem and patterns |
 
