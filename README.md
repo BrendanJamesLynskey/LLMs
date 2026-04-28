@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 18 sub-hubs below collectively re-export ~125 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 47 newly-added decks across 11 series (including a 5-deck companion to Sebastian Raschka's *Components of a Coding Agent*), plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 18 sub-hubs below collectively re-export ~130 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 52 newly-added decks across 12 series (including two 5-deck companions to Sebastian Raschka — *Components of a Coding Agent* and *Beyond Standard LLMs*), plus the directly-linked code repos and articles below.
 
 ---
 
@@ -30,7 +30,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [Transformer Architecture](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Architecture) | live · 7 decks · 3 code | Decoder-only transformer internals — visual walkthrough, every-computation forward pass, RTL accelerator, nanoGPT, PyTorch from scratch, NN data types, hardware-aware quantisation |
-| [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) | live · 5 decks | Architectures beyond the vanilla decoder — Mixture of Experts, Mamba and state-space models, long-context techniques (RoPE / YaRN / ring attention), diffusion language models, hybrids |
+| [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) | live · 10 decks | Architectures beyond the vanilla decoder — Mixture of Experts, Mamba and state-space models, long-context techniques (RoPE / YaRN / ring attention), diffusion language models, hybrids; plus a 5-deck companion to Raschka's *Beyond Standard LLMs* (linear-attention hybrids, text diffusion, code world models, small recursive transformers, decision tree) |
 | [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) | live · 5 decks | SFT pipelines, LoRA / QLoRA / DoRA / IA3, RLHF + PPO, DPO and cousins (IPO / KTO / ORPO / GRPO), Constitutional AI / RLAIF |
 | [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) | live · 3 decks | The o1 / R1 paradigm shift, scaling test-time compute, process vs outcome reward models, when to use reasoning models vs frontier+scaffolding |
 
