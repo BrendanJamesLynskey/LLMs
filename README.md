@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 18 sub-hubs below collectively re-export ~130 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 52 newly-added decks across 12 series (including two 5-deck companions to Sebastian Raschka — *Components of a Coding Agent* and *Beyond Standard LLMs*), plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 19 sub-hubs below collectively re-export ~140 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 64 newly-added decks across 13 series (including two 5-deck companions to Sebastian Raschka — *Components of a Coding Agent* and *Beyond Standard LLMs* — and a 12-deck Google TPUs series), plus the directly-linked code repos and articles below.
 
 ---
 
@@ -40,6 +40,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [NVIDIA GPU Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_NVIDIA_GPUs) | live · 37 decks | Pascal → Blackwell deep tour — SMs, tensor cores, memory hierarchy, NVLink, packaging, power, per-architecture low-level deep dives, the DGX Spark workstation |
+| [Google TPUs](https://github.com/BrendanJamesLynskey/LLM_Hub_Google_TPUs) | live · 12 decks | Twelve-deck deep tour of the TPU programme — 2013 voice-search napkin maths through Ironwood (v7) — history, systolic arrays, every generation v1→v7, OCS &amp; Palomar, ICI &amp; 3D torus, XLA / JAX / Pallas software stack, TPU vs GPU |
 | [CUDA Programming](https://github.com/BrendanJamesLynskey/LLM_Hub_CUDA) | live · 10 decks | From your first kernel to tiled matmul, streams, atomics, Nsight profiling — visual presentations on writing CUDA from scratch |
 | [Local LLM Hosting](https://github.com/BrendanJamesLynskey/LLM_Hub_Local_LLM_Hosting) | live · 11 decks | Self-hosting LLMs — Ollama, vLLM, llama.cpp, TGI, SGLang, Docker, multi-GPU parallelism, quantisation, determinism, production patterns |
 
