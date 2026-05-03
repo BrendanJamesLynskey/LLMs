@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 19 sub-hubs below collectively re-export ~140 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 64 newly-added decks across 13 series (including two 5-deck companions to Sebastian Raschka — *Components of a Coding Agent* and *Beyond Standard LLMs* — and a 12-deck Google TPUs series), plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 20 sub-hubs below collectively re-export ~152 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 76 newly-added decks across 14 series (including two 5-deck companions to Sebastian Raschka — *Components of a Coding Agent* and *Beyond Standard LLMs*, a 12-deck Google TPUs series, and a 12-deck Linear Algebra for AI/ML series), plus the directly-linked code repos and articles below.
 
 ---
 
@@ -34,6 +34,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) | live · 10 decks | Architectures beyond the vanilla decoder — Mixture of Experts, Mamba and state-space models, long-context techniques (RoPE / YaRN / ring attention), diffusion language models, hybrids; plus a 5-deck companion to Raschka's *Beyond Standard LLMs* (linear-attention hybrids, text diffusion, code world models, small recursive transformers, decision tree) |
 | [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) | live · 5 decks | SFT pipelines, LoRA / QLoRA / DoRA / IA3, RLHF + PPO, DPO and cousins (IPO / KTO / ORPO / GRPO), Constitutional AI / RLAIF |
 | [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) | live · 3 decks | The o1 / R1 paradigm shift, scaling test-time compute, process vs outcome reward models, when to use reasoning models vs frontier+scaffolding |
+| [Linear Algebra for AI/ML](https://github.com/BrendanJamesLynskey/LLM_Hub_Linear_Algebra) | live · 12 decks | Vectors, matrices, matmul, projections (FFN up/down), eigen, SVD &amp; LoRA, orthogonality &amp; RoPE, gradients &amp; backprop, attention as linear algebra, the full transformer block, tensors / einsum / FlashAttention / MoE / sharding |
 
 ### Hardware & Inference
 
@@ -87,7 +88,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 
 ### How this is organised
 
-- The **top-level index** (this README) lists 18 sub-hubs grouped into five themes plus Anthropic Claude, with directly-linked code repos and articles called out separately.
+- The **top-level index** (this README) lists 19 sub-hubs grouped into five themes plus Anthropic Claude, with directly-linked code repos and articles called out separately.
 - Each **sub-hub repo** is a small index of leaf-deck repos in that area. The sub-hub's `README.md` and its GitHub Pages site (e.g. `https://brendanjameslynskey.github.io/LLM_Hub_RAG_Retrieval/`) both list the decks.
 - Each **leaf deck** is its own repo (typically `Topic_NN_Title`) with a single-page interactive HTML presentation served on GitHub Pages.
 - **Status legend.** `live · N decks` — all leaves built and indexed by the sub-hub. `roadmap · N decks` — topic outline published, leaf decks landing progressively. `· N code` — sub-hub includes that many cloneable-source leaves (listed in the Cloneable code repositories table above).
