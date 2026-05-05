@@ -69,6 +69,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | [Production LLMOps](https://github.com/BrendanJamesLynskey/LLM_Hub_LLMOps) | live · 4 decks | LLM gateways (LiteLLM, Portkey), observability (Langfuse, Phoenix), caching strategies, cost and SLO discipline |
 | [LLM Evaluations](https://github.com/BrendanJamesLynskey/LLM_Hub_Evaluations) | live · 5 decks | Static benchmarks vs production evals, LLM-as-judge with its biases, eval frameworks (Inspect AI, Braintrust, Phoenix, Langfuse), drift detection, red-teaming |
 | [Safety, Alignment & Red-Teaming](https://github.com/BrendanJamesLynskey/LLM_Hub_Safety_Alignment) | live · 2 decks | Jailbreak taxonomy, defence-in-depth (Llama Guard, ShieldGemma, NeMo Guardrails), regulatory frame (NIST AI RMF, EU AI Act) |
+| [LLM-as-a-Service (Cloud `*aaS` 06)](https://github.com/BrendanJamesLynskey/Cloud_aaS_06_LLM_aaS) | live · 1 deck | Managed LLM service providers — pricing &amp; latency comparison (OpenAI / Anthropic / Bedrock / Vertex / Azure OpenAI / Together / Groq / Fireworks / Replicate), prompt caching, embeddings &amp; RAG-as-a-Service, agents-as-a-Service, fine-tuning APIs, evals / observability, MCP server hosting, LLM-specific security and governance. Companion to Local LLM Hosting (the self-hosted side) and part of the [Cloud `*aaS` series](https://github.com/BrendanJamesLynskey/Cloud_aaS_Hub) on the [Software](https://github.com/BrendanJamesLynskey/Software) index |
 
 ### Anthropic Claude
 
