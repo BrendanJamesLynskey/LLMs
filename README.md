@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 20 sub-hubs below collectively re-export ~152 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 76 newly-added decks across 14 series (including two 5-deck companions to Sebastian Raschka — *Components of a Coding Agent* and *Beyond Standard LLMs*, a 12-deck Google TPUs series, and a 12-deck Linear Algebra for AI/ML series), plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 21 sub-hubs below collectively re-export ~162 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 76 decks across 14 mid-2025 series, plus the new 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier — plus the directly-linked code repos and articles below.
 
 ---
 
@@ -71,6 +71,12 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | [Safety, Alignment & Red-Teaming](https://github.com/BrendanJamesLynskey/LLM_Hub_Safety_Alignment) | live · 2 decks | Jailbreak taxonomy, defence-in-depth (Llama Guard, ShieldGemma, NeMo Guardrails), regulatory frame (NIST AI RMF, EU AI Act) |
 | [LLM-as-a-Service (Cloud `*aaS` 06)](https://github.com/BrendanJamesLynskey/Cloud_aaS_06_LLM_aaS) | live · 1 deck | Managed LLM service providers — pricing &amp; latency comparison (OpenAI / Anthropic / Bedrock / Vertex / Azure OpenAI / Together / Groq / Fireworks / Replicate), prompt caching, embeddings &amp; RAG-as-a-Service, agents-as-a-Service, fine-tuning APIs, evals / observability, MCP server hosting, LLM-specific security and governance. Companion to Local LLM Hosting (the self-hosted side) and part of the [Cloud `*aaS` series](https://github.com/BrendanJamesLynskey/Cloud_aaS_Hub) on the [Software](https://github.com/BrendanJamesLynskey/Software) index |
 
+### LLM History
+
+| Sub-hub | Status | What's inside |
+|---------|--------|---------------|
+| [LLM History](https://github.com/BrendanJamesLynskey/LLM_Hub_LLM_History) | live · 10 decks | A history of large language models from Shannon (1948) to the multipolar 2026 frontier &mdash; people, labs and ideas. Pre-Transformer NLP, the 2017 transformer paper and its eight authors, university labs, OpenAI, Anthropic, Google DeepMind, Meta/Mistral/xAI/Cohere, the Chinese frontier labs (DeepSeek, Qwen, Kimi, GLM, Yi), and a forecast deck on future directions. Equal attention to technical detail and the human story behind the field |
+
 ### Anthropic Claude
 
 | Sub-hub | Status | What's inside |
@@ -89,7 +95,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 
 ### How this is organised
 
-- The **top-level index** (this README) lists 19 sub-hubs grouped into five themes plus Anthropic Claude, with directly-linked code repos and articles called out separately.
+- The **top-level index** (this README) lists 20 sub-hubs grouped into five themes plus the LLM History and Anthropic Claude sections, with directly-linked code repos and articles called out separately.
 - Each **sub-hub repo** is a small index of leaf-deck repos in that area. The sub-hub's `README.md` and its GitHub Pages site (e.g. `https://brendanjameslynskey.github.io/LLM_Hub_RAG_Retrieval/`) both list the decks.
 - Each **leaf deck** is its own repo (typically `Topic_NN_Title`) with a single-page interactive HTML presentation served on GitHub Pages.
 - **Status legend.** `live · N decks` — all leaves built and indexed by the sub-hub. `roadmap · N decks` — topic outline published, leaf decks landing progressively. `· N code` — sub-hub includes that many cloneable-source leaves (listed in the Cloneable code repositories table above).
