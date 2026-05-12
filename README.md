@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 21 sub-hubs below collectively re-export ~162 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 76 decks across 14 mid-2025 series, plus the new 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier — plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 22 sub-hubs below collectively re-export ~174 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 76 decks across 14 mid-2025 series, the 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier, and the new 12-deck *Mathematics for Machine Learning* companion to Deisenroth, Faisal &amp; Ong — plus the directly-linked code repos and articles below.
 
 ---
 
@@ -36,6 +36,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) | live · 5 decks | SFT pipelines, LoRA / QLoRA / DoRA / IA3, RLHF + PPO, DPO and cousins (IPO / KTO / ORPO / GRPO), Constitutional AI / RLAIF |
 | [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) | live · 3 decks | The o1 / R1 paradigm shift, scaling test-time compute, process vs outcome reward models, when to use reasoning models vs frontier+scaffolding |
 | [Linear Algebra for AI/ML](https://github.com/BrendanJamesLynskey/LLM_Hub_Linear_Algebra) | live · 12 decks | Vectors, matrices, matmul, projections (FFN up/down), eigen, SVD &amp; LoRA, orthogonality &amp; RoPE, gradients &amp; backprop, attention as linear algebra, the full transformer block, tensors / einsum / FlashAttention / MoE / sharding |
+| [Mathematics for Machine Learning](https://github.com/BrendanJamesLynskey/MML_Hub) | live · 12 decks | Twelve-deck companion to Deisenroth, Faisal &amp; Ong's *Mathematics for Machine Learning* (Cambridge University Press, 2020). Part I &mdash; linear algebra, analytic geometry, matrix decompositions, vector calculus, probability, optimisation; Part II &mdash; linear regression, PCA, GMM/EM, and the kernel SVM. Lives on the [Mathematics hub](https://github.com/BrendanJamesLynskey/Mathematics) but re-listed here for AI-engineer discoverability |
 
 ### Hardware & Inference
 
@@ -96,7 +97,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 
 ### How this is organised
 
-- The **top-level index** (this README) lists 20 sub-hubs grouped into five themes plus the LLM History and Anthropic Claude sections, with directly-linked code repos and articles called out separately.
+- The **top-level index** (this README) lists 22 sub-hubs grouped into five themes plus the LLM History, Mathematics for Machine Learning and Anthropic Claude sections, with directly-linked code repos and articles called out separately.
 - Each **sub-hub repo** is a small index of leaf-deck repos in that area. The sub-hub's `README.md` and its GitHub Pages site (e.g. `https://brendanjameslynskey.github.io/LLM_Hub_RAG_Retrieval/`) both list the decks.
 - Each **leaf deck** is its own repo (typically `Topic_NN_Title`) with a single-page interactive HTML presentation served on GitHub Pages.
 - **Status legend.** `live · N decks` — all leaves built and indexed by the sub-hub. `roadmap · N decks` — topic outline published, leaf decks landing progressively. `· N code` — sub-hub includes that many cloneable-source leaves (listed in the Cloneable code repositories table above).
