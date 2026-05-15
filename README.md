@@ -52,7 +52,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [RAG & Retrieval Systems](https://github.com/BrendanJamesLynskey/LLM_Hub_RAG_Retrieval) | live · 7 decks | Embedding models, vector databases, hybrid search and reranking, chunking and ingestion, agentic RAG, GraphRAG, production RAG |
-| [Vision-Language Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Vision_Language) | live · 5 decks | CLIP / SigLIP, Vision Transformers, modern VLMs (Llama 3.2 V, Qwen2-VL, InternVL, Pixtral, Gemini, Claude), document AI (ColPali, Donut), and end-to-end multimodal retrieval with the Qwen3 family (Qwen3-Embedding-VL, Qwen3-Reranker, Qwen3-VL) |
+| [Vision-Language Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Vision_Language) | live · 5 decks | CLIP / SigLIP, Vision Transformers, modern VLMs (Llama 3.2 V, Qwen2-VL, InternVL, Pixtral, Gemini, Claude), document AI (ColPali, Donut), and Qwen3-VL for video analytics &mdash; clip embedding, temporal-aware rerank, M-RoPE, edge-vs-cloud topology |
 | [Voice & Real-Time Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Voice_RealTime) | live · 3 decks | Streaming ASR + TTS, real-time frameworks (Pipecat, LiveKit Agents, OpenAI Realtime), latency budgets and turn-taking |
 
 ### Agents & Tools
