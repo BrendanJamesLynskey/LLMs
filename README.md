@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 22 sub-hubs below collectively re-export ~174 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 76 decks across 14 mid-2025 series, the 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier, and the new 12-deck *Mathematics for Machine Learning* companion to Deisenroth, Faisal &amp; Ong — plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 22 sub-hubs below collectively re-export ~176 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 78 decks across 14 mid-2025 series (now including a two-deck deep-dive companion on the two-step retrieval cascade architecture and the underlying reranker mathematics), the 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier, and the 12-deck *Mathematics for Machine Learning* companion to Deisenroth, Faisal &amp; Ong — plus the directly-linked code repos and articles below.
 
 ---
 
@@ -51,7 +51,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
-| [RAG & Retrieval Systems](https://github.com/BrendanJamesLynskey/LLM_Hub_RAG_Retrieval) | live · 7 decks | Embedding models, vector databases, hybrid search and reranking, chunking and ingestion, agentic RAG, GraphRAG, production RAG |
+| [RAG & Retrieval Systems](https://github.com/BrendanJamesLynskey/LLM_Hub_RAG_Retrieval) | live · 9 decks | Embedding models, vector databases, hybrid search and reranking (plus deep-dive companions on two-step cascade architecture and reranker mathematics — cross-encoder attention, ColBERT MaxSim, RankNet/LambdaRank/LambdaMART, InfoNCE, MarginMSE distillation, NDCG derivations), chunking and ingestion, agentic RAG, GraphRAG, production RAG |
 | [Vision-Language Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Vision_Language) | live · 5 decks | CLIP / SigLIP, Vision Transformers, modern VLMs (Llama 3.2 V, Qwen2-VL, InternVL, Pixtral, Gemini, Claude), document AI (ColPali, Donut), and Qwen3-VL for video analytics &mdash; clip embedding, temporal-aware rerank, M-RoPE, edge-vs-cloud topology |
 | [Voice & Real-Time Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Voice_RealTime) | live · 3 decks | Streaming ASR + TTS, real-time frameworks (Pipecat, LiveKit Agents, OpenAI Realtime), latency budgets and turn-taking |
 
