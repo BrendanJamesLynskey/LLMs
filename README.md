@@ -20,6 +20,7 @@ Most leaves are interactive HTML presentations rendered on GitHub Pages. The rep
 | [Introduction_to_LangGraph](https://github.com/BrendanJamesLynskey/Introduction_to_LangGraph) | Agents & Orchestration | Interactive slide deck plus 10 runnable examples in Python and TypeScript covering graph-based agent orchestration |
 | [ReAct_math_agent](https://github.com/BrendanJamesLynskey/ReAct_math_agent) | Agents & Orchestration | Browser-based ReAct agent that solves maths problems step-by-step with a local Ollama LLM, visualising the reasoning loop |
 | [Research_Digest_Agent](https://github.com/BrendanJamesLynskey/Research_Digest_Agent) | Agents & Orchestration | Autonomous research agent that searches the web, reads sources, and produces structured markdown digests (Claude or Ollama) |
+| [Raschka_Coding_Agent_LangGraph](https://github.com/BrendanJamesLynskey/Raschka_Coding_Agent_LangGraph) | Coding Agents Internals | LangGraph implementation of Sebastian Raschka's *Components of a Coding Agent* — six components mapped one-per-module (workspace context, cacheable stable-prefix prompt, sandboxed file/shell tools, transcript compression, two-tier memory), swappable Gemini / DeepSeek / OpenAI / fake providers chosen in `.env`, full-fidelity LLM tracing (rich panels + JSONL on disk), 29 offline tests, written as a learning resource |
 
 ---
 
@@ -60,7 +61,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) | live · 7 decks · 3 code | How LLM agents work, multi-agent coordination, LangGraph, framework guides (LangGraph / CrewAI / AutoGen / OpenAI Agents), ReAct math agent, research-digest agent |
-| [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | live · 7 decks | How Cursor, Aider, Claude Code & Codex CLI work — repo understanding, edit strategies, plus a 5-deck companion to Raschka's *Components of a Coding Agent* (context, cache, tools, memory, subagents) |
+| [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | live · 7 decks · 1 code | How Cursor, Aider, Claude Code & Codex CLI work — repo understanding, edit strategies, plus a 5-deck companion to Raschka's *Components of a Coding Agent* (context, cache, tools, memory, subagents) and a runnable LangGraph implementation of the same six components |
 | [Computer-Use & Browser Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Computer_Use) | live · 2 decks | Anthropic Computer Use, OpenAI Operator, Gemini Mariner, Browser-Use, Playwright — action schemas, screen vs DOM grounding, evals |
 | [Model Context Protocol](https://github.com/BrendanJamesLynskey/LLM_Hub_MCP) | live · 5 decks | Anthropic's open protocol for connecting LLMs to tools and data — JSON-RPC primitives, transports, server-building, OAuth 2.1 security, ecosystem and patterns |
 
