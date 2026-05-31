@@ -60,7 +60,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
-| [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) | live · 7 decks · 3 code | How LLM agents work, multi-agent coordination, LangGraph, framework guides (LangGraph / CrewAI / AutoGen / OpenAI Agents), ReAct math agent, research-digest agent |
+| [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) | live · 8 decks · 3 code | How LLM agents work, multi-agent coordination, LangGraph, framework guides (LangGraph / CrewAI / AutoGen / OpenAI Agents), a Pydantic AI deep-dive (type-safe agents, structured outputs, DI, durable execution, MCP, Logfire/evals), ReAct math agent, research-digest agent |
 | [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) | live · 7 decks · 1 code | How Cursor, Aider, Claude Code & Codex CLI work — repo understanding, edit strategies, plus a 5-deck companion to Raschka's *Components of a Coding Agent* (context, cache, tools, memory, subagents) and a runnable LangGraph implementation of the same six components |
 | [Computer-Use & Browser Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Computer_Use) | live · 2 decks | Anthropic Computer Use, OpenAI Operator, Gemini Mariner, Browser-Use, Playwright — action schemas, screen vs DOM grounding, evals |
 | [Model Context Protocol](https://github.com/BrendanJamesLynskey/LLM_Hub_MCP) | live · 5 decks | Anthropic's open protocol for connecting LLMs to tools and data — JSON-RPC primitives, transports, server-building, OAuth 2.1 security, ecosystem and patterns |
