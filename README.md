@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 22 sub-hubs below collectively re-export ~176 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 78 decks across 14 mid-2025 series (now including a two-deck deep-dive companion on the two-step retrieval cascade architecture and the underlying reranker mathematics), the 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier, and the 12-deck *Mathematics for Machine Learning* companion to Deisenroth, Faisal &amp; Ong — plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 23 sub-hubs below collectively re-export ~182 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 78 decks across 14 mid-2025 series (now including a two-deck deep-dive companion on the two-step retrieval cascade architecture and the underlying reranker mathematics), the 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier, the 12-deck *Mathematics for Machine Learning* companion to Deisenroth, Faisal &amp; Ong, and the 7-deck *Karpathy: Neural Networks Zero to Hero* series walking through Andrej Karpathy's from-scratch teaching codebases (micrograd, makemore, minbpe, minGPT, nanoGPT, llm.c, nanochat) — plus the directly-linked code repos and articles below.
 
 ---
 
@@ -33,6 +33,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | Sub-hub | Status | What's inside |
 |---------|--------|---------------|
 | [Transformer Architecture](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Architecture) | live · 8 decks · 5 code | Decoder-only transformer internals — visual walkthrough, every-computation forward pass, RTL accelerator, nanoGPT, PyTorch from scratch, NN data types, hardware-aware quantisation, MMUL hardware deep-dive, and the full-stack interactive web explainer |
+| [Karpathy: Neural Networks Zero to Hero](https://github.com/BrendanJamesLynskey/LLM_Hub_Karpathy_Zero_to_Hero) | live · 7 decks | Interactive walkthroughs of Andrej Karpathy's from-scratch teaching codebases — micrograd (autograd & backprop), makemore (char-level LMs, BatchNorm, WaveNet), minbpe (the GPT tokeniser), minGPT and nanoGPT (the GPT itself), llm.c (training in raw C/CUDA), and nanochat (a full ChatGPT pipeline). Cross-links the existing nanoGPT deck shared with the Transformer Architecture hub |
 | [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) | live · 10 decks | Architectures beyond the vanilla decoder — Mixture of Experts, Mamba and state-space models, long-context techniques (RoPE / YaRN / ring attention), diffusion language models, hybrids; plus a 5-deck companion to Raschka's *Beyond Standard LLMs* (linear-attention hybrids, text diffusion, code world models, small recursive transformers, decision tree) |
 | [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) | live · 5 decks | SFT pipelines, LoRA / QLoRA / DoRA / IA3, RLHF + PPO, DPO and cousins (IPO / KTO / ORPO / GRPO), Constitutional AI / RLAIF |
 | [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) | live · 3 decks | The o1 / R1 paradigm shift, scaling test-time compute, process vs outcome reward models, when to use reasoning models vs frontier+scaffolding |
@@ -98,7 +99,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 
 ### How this is organised
 
-- The **top-level index** (this README) lists 22 sub-hubs grouped into five themes plus the LLM History, Mathematics for Machine Learning and Anthropic Claude sections, with directly-linked code repos and articles called out separately.
+- The **top-level index** (this README) lists 23 sub-hubs grouped into five themes plus the LLM History, Mathematics for Machine Learning and Anthropic Claude sections, with directly-linked code repos and articles called out separately.
 - Each **sub-hub repo** is a small index of leaf-deck repos in that area. The sub-hub's `README.md` and its GitHub Pages site (e.g. `https://brendanjameslynskey.github.io/LLM_Hub_RAG_Retrieval/`) both list the decks.
 - Each **leaf deck** is its own repo (typically `Topic_NN_Title`) with a single-page interactive HTML presentation served on GitHub Pages.
 - **Status legend.** `live · N decks` — all leaves built and indexed by the sub-hub. `roadmap · N decks` — topic outline published, leaf decks landing progressively. `· N code` — sub-hub includes that many cloneable-source leaves (listed in the Cloneable code repositories table above).
