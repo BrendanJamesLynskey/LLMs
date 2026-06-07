@@ -2,7 +2,7 @@
 
 A hierarchical index of presentation series for AI / LLM / agentic engineers — from transformer internals and GPU hardware up through retrieval, agents, evaluations, safety and production operations.
 
-Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 23 sub-hubs below collectively re-export ~182 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 78 decks across 14 mid-2025 series (now including a two-deck deep-dive companion on the two-step retrieval cascade architecture and the underlying reranker mathematics), the 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier, the 12-deck *Mathematics for Machine Learning* companion to Deisenroth, Faisal &amp; Ong, and the 7-deck *Karpathy: Neural Networks Zero to Hero* series walking through Andrej Karpathy's from-scratch teaching codebases (micrograd, makemore, minbpe, minGPT, nanoGPT, llm.c, nanochat) — plus the directly-linked code repos and articles below.
+Every project that used to be indexed here directly is still reachable — typically through its sub-hub (one click of indirection). The 24 sub-hubs below collectively re-export ~188 leaf repos: ~80 pre-existing presentations, 5 MCP decks, 78 decks across 14 mid-2025 series (now including a two-deck deep-dive companion on the two-step retrieval cascade architecture and the underlying reranker mathematics), the 10-deck *LLM History* series covering people, labs and ideas from Shannon to the multipolar 2026 frontier, the 12-deck *Mathematics for Machine Learning* companion to Deisenroth, Faisal &amp; Ong, and the 7-deck *Karpathy: Neural Networks Zero to Hero* series walking through Andrej Karpathy's from-scratch teaching codebases (micrograd, makemore, minbpe, minGPT, nanoGPT, llm.c, nanochat), and the 6-deck *Key LLM Publications* series indexing the thirty most important papers, articles and blog posts for a practising LLM/agent engineer — from the Transformer to the Model Context Protocol — each with a summary, an engineer's interpretation, and diagrams — plus the directly-linked code repos and articles below.
 
 ---
 
@@ -87,6 +87,12 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 |---------|--------|---------------|
 | [Anthropic Claude](https://github.com/BrendanJamesLynskey/LLM_Hub_Anthropic_Claude) | live · 1 deck | Comprehensive presentation series on Claude — models, Claude.ai, Claude Code, API and SDKs, integrations, agents, productivity, Claude Desktop, hands-on workflow walkthroughs |
 
+### Key Publications
+
+| Sub-hub | Status | What's inside |
+|---------|--------|---------------|
+| [Key LLM Publications](https://github.com/BrendanJamesLynskey/LLM_Hub_Key_Publications) | live · 6 decks | Thirty essential papers, articles and blog posts every practising LLM/agent engineer should know &mdash; six themed decks of five, each publication with a plain-language summary, an engineer's interpretation, and diagrams of the core idea. Foundations (Transformer, BERT, GPT-3, scaling laws, Chinchilla); alignment &amp; fine-tuning (InstructGPT/RLHF, Constitutional AI, LoRA/QLoRA, DPO); reasoning &amp; test-time compute (CoT, self-consistency, Tree of Thoughts, process rewards, DeepSeek-R1); efficient inference (FlashAttention, MoE, GPTQ, PagedAttention/vLLM, speculative decoding); context, position &amp; retrieval (RoPE, RAG, DPR, lost-in-the-middle, Self-RAG); agents &amp; tool use (ReAct, Toolformer, Reflexion, Building Effective Agents, MCP) |
+
 ---
 
 ## Articles & Reference
@@ -99,7 +105,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 
 ### How this is organised
 
-- The **top-level index** (this README) lists 23 sub-hubs grouped into five themes plus the LLM History, Mathematics for Machine Learning and Anthropic Claude sections, with directly-linked code repos and articles called out separately.
+- The **top-level index** (this README) lists 24 sub-hubs grouped into five themes plus the LLM History, Mathematics for Machine Learning, Anthropic Claude and Key Publications sections, with directly-linked code repos and articles called out separately.
 - Each **sub-hub repo** is a small index of leaf-deck repos in that area. The sub-hub's `README.md` and its GitHub Pages site (e.g. `https://brendanjameslynskey.github.io/LLM_Hub_RAG_Retrieval/`) both list the decks.
 - Each **leaf deck** is its own repo (typically `Topic_NN_Title`) with a single-page interactive HTML presentation served on GitHub Pages.
 - **Status legend.** `live · N decks` — all leaves built and indexed by the sub-hub. `roadmap · N decks` — topic outline published, leaf decks landing progressively. `· N code` — sub-hub includes that many cloneable-source leaves (listed in the Cloneable code repositories table above).
