@@ -48,6 +48,7 @@ Each row points to a sub-hub repo whose README and GitHub Pages site list the le
 | [Google TPUs](https://github.com/BrendanJamesLynskey/LLM_Hub_Google_TPUs) | live · 12 decks | Twelve-deck deep tour of the TPU programme — 2013 voice-search napkin maths through Ironwood (v7) — history, systolic arrays, every generation v1→v7, OCS &amp; Palomar, ICI &amp; 3D torus, XLA / JAX / Pallas software stack, TPU vs GPU |
 | [CUDA Programming](https://github.com/BrendanJamesLynskey/LLM_Hub_CUDA) | live · 10 decks | From your first kernel to tiled matmul, streams, atomics, Nsight profiling — visual presentations on writing CUDA from scratch |
 | [Local LLM Hosting](https://github.com/BrendanJamesLynskey/LLM_Hub_Local_LLM_Hosting) | live · 11 decks | Self-hosting LLMs — Ollama, vLLM, llama.cpp, TGI, SGLang, Docker, multi-GPU parallelism, quantisation, determinism, production patterns |
+| [NVIDIA DeepStream](https://github.com/BrendanJamesLynskey/Nvidia_DeepStream) | live · 8 decks | The streaming vision-AI SDK end-to-end — the big picture, GStreamer foundations &amp; the NVMM/NvBufSurface memory model, the 40+ plugin toolbox, inference with TensorRT &amp; Triton (nvinfer/nvinferserver), multi-object tracking (IOU/NvSORT/NvDCF/NvDeepSORT + Re-ID + SV3DT), the NvDsBatchMeta graph &amp; nvdsanalytics, edge-to-cloud messaging (nvmsgconv/nvmsgbroker, Kafka/MQTT/IoT, smart record), and building &amp; deploying (deepstream-app, pyds, Graph Composer, NGC/Kubernetes, perf tuning) |
 
 ### Retrieval & Multimodality
 
