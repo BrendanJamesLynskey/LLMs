@@ -14,6 +14,20 @@ Every project that used to be indexed here directly is still reachable — typic
 
 ---
 
+## Series in this index
+
+The 34 deck series (sub-hubs) by theme; each has its own page listing its decks, and the [Sub-hub index](#sub-hub-index) below describes every one.
+
+- **Foundations & Internals:** [Transformer Architecture](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Architecture) · [Karpathy: Neural Networks Zero to Hero](https://github.com/BrendanJamesLynskey/LLM_Hub_Karpathy_Zero_to_Hero) · [Qwen](https://github.com/BrendanJamesLynskey/Qwen) · [Modern Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_Modern_Architectures) · [Training & Fine-Tuning](https://github.com/BrendanJamesLynskey/LLM_Hub_Fine_Tuning) · [Transformer Training](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Training) · [Reasoning Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Reasoning) · [Linear Algebra for AI/ML](https://github.com/BrendanJamesLynskey/LLM_Hub_Linear_Algebra) · [Mathematics for Machine Learning](https://github.com/BrendanJamesLynskey/MML_Hub)
+- **Hardware:** [NVIDIA GPU Architectures](https://github.com/BrendanJamesLynskey/LLM_Hub_NVIDIA_GPUs) · [Google TPUs](https://github.com/BrendanJamesLynskey/LLM_Hub_Google_TPUs) · [AI Accelerators](https://github.com/BrendanJamesLynskey/LLM_Hub_AI_Accelerators) · [CUDA Programming](https://github.com/BrendanJamesLynskey/LLM_Hub_CUDA)
+- **Inference:** [Local LLM Hosting](https://github.com/BrendanJamesLynskey/LLM_Hub_Local_LLM_Hosting) · [LLM Inference Simulators](https://github.com/BrendanJamesLynskey/LLM_Hub_Inference_Simulators) · [Fourier Optics for Inference](https://github.com/BrendanJamesLynskey/LLM_Hub_Fourier_Optics_Inference) · [Compute in Transit](https://github.com/BrendanJamesLynskey/LLM_Hub_Compute_in_Transit) · [Simulation Engineering Toolkit](https://github.com/BrendanJamesLynskey/SimEng_Hub_Toolkit) · [NVIDIA DeepStream](https://github.com/BrendanJamesLynskey/Nvidia_DeepStream)
+- **Retrieval & Multimodality:** [RAG & Retrieval Systems](https://github.com/BrendanJamesLynskey/LLM_Hub_RAG_Retrieval) · [Vision-Language Models](https://github.com/BrendanJamesLynskey/LLM_Hub_Vision_Language) · [Voice & Real-Time Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Voice_RealTime)
+- **Agents & Tools:** [Agents & Orchestration](https://github.com/BrendanJamesLynskey/LLM_Hub_Agents) · [Coding Agents Internals](https://github.com/BrendanJamesLynskey/LLM_Hub_Coding_Agents) · [Computer-Use & Browser Agents](https://github.com/BrendanJamesLynskey/LLM_Hub_Computer_Use) · [Model Context Protocol](https://github.com/BrendanJamesLynskey/LLM_Hub_MCP)
+- **Production & Safety:** [Production LLMOps](https://github.com/BrendanJamesLynskey/LLM_Hub_LLMOps) · [LLM Evaluations](https://github.com/BrendanJamesLynskey/LLM_Hub_Evaluations) · [Safety, Alignment & Red-Teaming](https://github.com/BrendanJamesLynskey/LLM_Hub_Safety_Alignment) · [LLM-as-a-Service (Cloud `*aaS` 06)](https://github.com/BrendanJamesLynskey/Cloud_aaS_06_LLM_aaS)
+- **History, Claude, publications and interpretability:** [LLM History](https://github.com/BrendanJamesLynskey/LLM_Hub_LLM_History) · [Anthropic Claude](https://github.com/BrendanJamesLynskey/LLM_Hub_Anthropic_Claude) · [Key LLM Publications](https://github.com/BrendanJamesLynskey/LLM_Hub_Key_Publications) · [The Transformer Circuits Thread](https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Circuits)
+
+---
+
 ## Start here: the interactive sites
 
 Sixteen companion explainer sites in four tracks, each a computed, animated reading experience whose numbers come from tested code (every site's About page says how it is checked). Each site's header has a menu to all the others. They are also open source: the repositories ship the models, fixtures and CI.
@@ -66,7 +80,7 @@ Most leaves are interactive HTML presentations rendered on GitHub Pages. The rep
 
 | Repo | Sub-hub | What's inside |
 |------|---------|---------------|
-| [LLM_Transformer_Decoder_RTL](https://github.com/BrendanJamesLynskey/LLM_Transformer_Decoder_RTL) | Transformer Architecture | Synthesisable SystemVerilog implementation of a pre-norm decoder block with KV-cache, plus an 83-test verification suite |
+| [LLM_Transformer_Decoder_RTL](https://github.com/BrendanJamesLynskey/LLM_Transformer_Decoder_RTL) | Transformer Architecture | Synthesisable SystemVerilog implementation of a pre-norm decoder block with KV-cache, plus an 84-test verification suite (54 bit-accurate against a Python golden model, 30 RTL simulations) |
 | [Python_Transformer_Decoder](https://github.com/BrendanJamesLynskey/Python_Transformer_Decoder) | Transformer Architecture | Step-by-step PyTorch implementation in a single Jupyter notebook — every component built from first principles |
 | [NN_data_types](https://github.com/BrendanJamesLynskey/NN_data_types) | Transformer Architecture | SystemVerilog implementations of 9 numerical formats (FP32 down to FP4) used in NN training and inference hardware |
 | [AI_MMUL_Unit](https://github.com/BrendanJamesLynskey/AI_MMUL_Unit) | Transformer Architecture | Hardware deep-dive on the MMUL — 24-slide interactive deck (Kung 1978/82 → TPU → Blackwell, four dataflows, Transformer mapping, FP32→FP4 / MXFP / NVFP4, real systems, memory hierarchy, power & thermals) plus four parameterised SystemVerilog implementations and 258 passing tests |
